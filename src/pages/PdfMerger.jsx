@@ -492,6 +492,104 @@ export default function PdfMerger() {
             No PDF data is sent to a server.
           </p>
         )}
+
+        <div className="mx-auto mt-16 max-w-4xl space-y-12 sm:mt-20">
+          <section aria-labelledby="what-is-pdf-merging">
+            <h2 id="what-is-pdf-merging" className="text-2xl font-bold tracking-tight text-slate-950">
+              What Is PDF Merging?
+            </h2>
+            <p className="mt-3 leading-7 text-slate-600">
+              PDF merging combines the pages from multiple PDF files into one
+              document. It can be useful when related materials, such as a
+              report and its appendices, need to be kept together for sharing,
+              review, or printing.
+            </p>
+          </section>
+
+          <section aria-labelledby="how-to-merge-pdfs">
+            <h2 id="how-to-merge-pdfs" className="text-2xl font-bold tracking-tight text-slate-950">
+              How to Merge PDF Files
+            </h2>
+            <ol className="mt-5 grid gap-4 sm:grid-cols-2">
+              {[
+                ['Select your PDFs', 'Choose multiple PDF files or drag and drop them into the upload area. At least two valid PDFs are required, and each file can be up to 25 MB.'],
+                ['Arrange the files', 'Use the Move Up and Move Down arrow buttons beside each file to set the order.'],
+                ['Remove files if needed', 'Select the remove button beside a file you do not want in the merged document.'],
+                ['Merge and download', 'Select Merge PDFs, then use Download merged PDF when the result is ready.'],
+              ].map(([title, description], index) => (
+                <li key={title} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                  <div className="flex items-center gap-3">
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-indigo-50 text-sm font-semibold text-indigo-700">
+                      {index + 1}
+                    </span>
+                    <h3 className="font-semibold text-slate-950">{title}</h3>
+                  </div>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">{description}</p>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          <section aria-labelledby="why-merge-pdfs">
+            <h2 id="why-merge-pdfs" className="text-2xl font-bold tracking-tight text-slate-950">
+              Why Merge PDF Files?
+            </h2>
+            <p className="mt-3 leading-7 text-slate-600">
+              A single combined document can keep related files together,
+              organize items such as reports and invoices, and make a set of
+              pages easier to share or print. It can also reduce the number of
+              separate files you need to track.
+            </p>
+          </section>
+
+          <section aria-labelledby="pdf-file-order">
+            <h2 id="pdf-file-order" className="text-2xl font-bold tracking-tight text-slate-950">
+              PDF File Ordering
+            </h2>
+            <p className="mt-3 leading-7 text-slate-600">
+              File order determines where each document’s pages appear in the
+              merged PDF. The merger processes the selected list from top to
+              bottom, preserving each source PDF’s page order. Use the Move Up
+              and Move Down buttons to change that list before merging.
+            </p>
+          </section>
+
+          <section aria-labelledby="pdf-limitations">
+            <h2 id="pdf-limitations" className="text-2xl font-bold tracking-tight text-slate-950">
+              Important Limitations
+            </h2>
+            <ul className="mt-4 list-disc space-y-2 pl-5 leading-7 text-slate-600">
+              <li>Password-protected or encrypted PDFs cannot be opened by this tool; it does not ask for a password.</li>
+              <li>Each file must be no larger than 25 MB, but the total number and complexity of files may still exceed the browser’s available memory.</li>
+              <li>PDFs are read and merged in your browser. The app does not upload them to a QuickTools processing server.</li>
+              <li>Merging combines documents; it is not a PDF compression feature, so the final file is not guaranteed to be smaller than the originals combined.</li>
+            </ul>
+          </section>
+
+          <section aria-labelledby="pdf-faq">
+            <h2 id="pdf-faq" className="text-2xl font-bold tracking-tight text-slate-950">
+              Frequently Asked Questions
+            </h2>
+            <div className="mt-4 divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white px-5 shadow-sm sm:px-6">
+              {[
+                ['Is this PDF Merger free?', 'Yes. You can merge PDFs without an account or payment.'],
+                ['How many PDF files can I merge?', 'You need at least two valid PDFs. There is no separate file-count maximum in the tool, but your browser’s available memory can limit how many or how large the files can be processed together.'],
+                ['Can I change the order of PDF files?', 'Yes. Use the Move Up and Move Down buttons to arrange the selected files before merging.'],
+                ['Can I remove a PDF before merging?', 'Yes. Select the remove button beside that file in the selected list.'],
+                ['Are my PDF files uploaded to a server?', 'No. The files are processed in your browser and are not sent to a QuickTools processing server.'],
+                ['Can I merge password-protected PDFs?', 'No. This tool does not accept a password, so encrypted or password-protected PDFs cannot be merged.'],
+                ['Will merging reduce PDF file size?', 'Not necessarily. The tool combines pages; it does not promise to compress the PDF, and the merged file may be large.'],
+              ].map(([question, answer]) => (
+                <details key={question} className="py-4">
+                  <summary className="cursor-pointer font-semibold text-slate-900 marker:text-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-600">
+                    {question}
+                  </summary>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">{answer}</p>
+                </details>
+              ))}
+            </div>
+          </section>
+        </div>
       </div>
     </>
   )
