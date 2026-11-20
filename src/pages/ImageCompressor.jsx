@@ -1,0 +1,473 @@
+import imageCompression from 'browser-image-compression'
+import imageCompressionWorkerUrl from 'browser-image-compression/dist/browser-image-compression.js?url'
+import {
+  AlertCircle,
+  CheckCircle2,
+  Download,
+  FileImage,
+  ImagePlus,
+  LoaderCircle,
+  LockKeyhole,
+  RefreshCw,
+  ShieldCheck,
+  Upload,
+} from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import PageMetadata from '../components/seo/PageMetadata.jsx'
+import {
+  formatFileSize,
+  getCompressedFilename,
+  getImageFormat,
+  MAX_IMAGE_SIZE_BYTES,
+  validateImageFile,
+} from '../utils/imageValidation.js'
+
+const qualityOptions = {
+  min: 10,
+  max: 100,
+  initial: 80,
+}
+
+function ImagePreview({ src, alt, className = '' }) {
+  return (
+    <div className={`flex min-h-48 items-center justify-center overflow-hidden rounded-xl bg-[linear-gradient(45deg,#f1f5f9_25%,transparent_25%),linear-gradient(-45deg,#f1f5f9_25%,transparent_25%),linear-gradient(45deg,transparent_75%,#f1f5f9_75%),linear-gradient(-45deg,transparent_75%,#f1f5f9_75%)] bg-[length:20px_20px] bg-[position:0_0,0_10px,10px_-10px,-10px_0] p-3 ${className}`}>
+      <img src={src} alt={alt} className="max-h-80 max-w-full object-contain" />
+    </div>
+  )
+}
+
+function FileDetails({ file, dimensions }) {
+  return (
+    <dl className="mt-4 grid grid-cols-2 gap-3 text-sm">
+      <div>
+        <dt className="text-slate-500">File size</dt>
+        <dd className="mt-1 font-medium text-slate-900">{formatFileSize(file.size)}</dd>
+      </div>
+      <div>
+        <dt className="text-slate-500">Dimensions</dt>
+        <dd className="mt-1 font-medium text-slate-900">
+          {dimensions ? `${dimensions.width} × ${dimensions.height} px` : 'Reading image…'}
+        </dd>
+      </div>
+    </dl>
+  )
+}
+
+export default function ImageCompressor() {
+  const fileInputRef = useRef(null)
+  const compressionInProgressRef = useRef(false)
+  const [imageFile, setImageFile] = useState(null)
+  const [imageUrl, setImageUrl] = useState('')
+  const [dimensions, setDimensions] = useState(null)
+  const [compressedFile, setCompressedFile] = useState(null)
+  const [compressedUrl, setCompressedUrl] = useState('')
+  const [quality, setQuality] = useState(qualityOptions.initial)
+  const [progress, setProgress] = useState(0)
+  const [isDragging, setIsDragging] = useState(false)
+  const [isCompressing, setIsCompressing] = useState(false)
+  const [error, setError] = useState('')
+  const [notice, setNotice] = useState('')
+  const [downloadMessage, setDownloadMessage] = useState('')
+
+  useEffect(() => {
+    if (!imageFile) {
+      setImageUrl('')
+      setDimensions(null)
+      return undefined
+    }
+
+    const url = URL.createObjectURL(imageFile)
+    let active = true
+    setImageUrl(url)
+    setDimensions(null)
+
+    const image = new Image()
+    image.onload = () => {
+      if (active) setDimensions({ width: image.naturalWidth, height: image.naturalHeight })
+    }
+    image.onerror = () => {
+      if (active) {
+        setError('This image could not be opened. Try a valid JPG, PNG, or WebP image.')
+        setImageFile(null)
+      }
+    }
+    image.src = url
+
+    return () => {
+      active = false
+      URL.revokeObjectURL(url)
+    }
+  }, [imageFile])
+
+  useEffect(() => {
+    if (!compressedFile) {
+      setCompressedUrl('')
+      return undefined
+    }
+
+    const url = URL.createObjectURL(compressedFile)
+    setCompressedUrl(url)
+    return () => URL.revokeObjectURL(url)
+  }, [compressedFile])
+
+  const chooseImage = (file) => {
+    if (isCompressing) return
+
+    setError('')
+    setNotice('')
+    setDownloadMessage('')
+    const validationError = validateImageFile(file)
+    if (validationError) {
+      setError(validationError)
+      return
+    }
+
+    setCompressedFile(null)
+    setProgress(0)
+    setImageFile(file)
+  }
+
+  const handleFileInput = (event) => {
+    chooseImage(event.target.files?.[0])
+    event.target.value = ''
+  }
+
+  const handleDrop = (event) => {
+    event.preventDefault()
+    setIsDragging(false)
+    chooseImage(event.dataTransfer.files?.[0])
+  }
+
+  const compressImage = async () => {
+    if (!imageFile || compressionInProgressRef.current) return
+
+    compressionInProgressRef.current = true
+    setIsCompressing(true)
+    setProgress(0)
+    setError('')
+    setNotice('')
+    setDownloadMessage('')
+
+    try {
+      const format = getImageFormat(imageFile)
+      const result = await imageCompression(imageFile, {
+        maxSizeMB: Number.POSITIVE_INFINITY,
+        initialQuality: quality / 100,
+        alwaysKeepResolution: true,
+        fileType: format.mimeType,
+        useWebWorker: true,
+        libURL: imageCompressionWorkerUrl,
+        onProgress: (nextProgress) => setProgress(Math.round(nextProgress)),
+      })
+
+      setCompressedFile(result)
+      setProgress(100)
+      if (result.size < imageFile.size) {
+        setNotice('Compression complete. Your image is ready to download.')
+      } else {
+        setNotice('Compression complete, but this image did not get smaller at the selected quality.')
+      }
+    } catch (compressionError) {
+      setError(
+        compressionError instanceof Error
+          ? `Compression failed: ${compressionError.message}`
+          : 'Compression failed. Try another image or a different quality setting.',
+      )
+    } finally {
+      compressionInProgressRef.current = false
+      setIsCompressing(false)
+    }
+  }
+
+  const reset = () => {
+    if (isCompressing) return
+    setImageFile(null)
+    setCompressedFile(null)
+    setDimensions(null)
+    setQuality(qualityOptions.initial)
+    setProgress(0)
+    setError('')
+    setNotice('')
+    setDownloadMessage('')
+    if (fileInputRef.current) fileInputRef.current.value = ''
+  }
+
+  const downloadImage = () => {
+    if (!compressedFile || !imageFile) return
+
+    let downloadUrl
+    try {
+      const format = getImageFormat(imageFile)
+      downloadUrl = URL.createObjectURL(compressedFile)
+      const anchor = document.createElement('a')
+      anchor.href = downloadUrl
+      anchor.download = getCompressedFilename(imageFile.name, format.extension)
+      document.body.append(anchor)
+      anchor.click()
+      anchor.remove()
+      setDownloadMessage('Download started.')
+      window.setTimeout(() => URL.revokeObjectURL(downloadUrl), 1000)
+    } catch (downloadError) {
+      if (downloadUrl) URL.revokeObjectURL(downloadUrl)
+      setDownloadMessage(
+        downloadError instanceof Error
+          ? `Download failed: ${downloadError.message}`
+          : 'Download failed. Please try again.',
+      )
+    }
+  }
+
+  const savedBytes = compressedFile && imageFile
+    ? Math.max(0, imageFile.size - compressedFile.size)
+    : 0
+  const reduction = imageFile?.size && compressedFile
+    ? Math.max(0, Math.round((savedBytes / imageFile.size) * 100))
+    : 0
+  const outputGrew = Boolean(compressedFile && imageFile && compressedFile.size > imageFile.size)
+
+  return (
+    <>
+      <PageMetadata
+        title="Image Compressor"
+        description="Compress JPG, PNG, and WebP images locally in your browser. Adjust quality, compare results, and download without uploading your files."
+      />
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
+        <header className="mx-auto max-w-3xl text-center">
+          <span className="inline-flex items-center gap-2 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-sm font-medium text-indigo-700">
+            <ShieldCheck aria-hidden="true" size={16} />
+            Private, browser-based processing
+          </span>
+          <h1 className="mt-5 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+            Image Compressor
+          </h1>
+          <p className="mt-3 text-base leading-7 text-slate-600 sm:text-lg">
+            Reduce image file size and keep the dimensions intact. Your image is
+            processed locally in your browser and is never uploaded.
+          </p>
+        </header>
+
+        <div className="mx-auto mt-8 max-w-3xl rounded-xl border border-emerald-100 bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
+          <p className="flex items-start gap-2">
+            <LockKeyhole aria-hidden="true" size={17} className="mt-0.5 shrink-0 text-emerald-700" />
+            <span>Files stay on your device. Compression runs locally using your browser.</span>
+          </p>
+        </div>
+
+        {error && (
+          <div role="alert" className="mx-auto mt-5 flex max-w-3xl items-start gap-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
+            <AlertCircle aria-hidden="true" size={18} className="mt-0.5 shrink-0" />
+            <p>{error}</p>
+          </div>
+        )}
+
+        {notice && compressedFile && (
+          <div role="status" className={`mx-auto mt-5 flex max-w-3xl items-start gap-3 rounded-xl border px-4 py-3 text-sm ${outputGrew ? 'border-amber-200 bg-amber-50 text-amber-900' : 'border-emerald-200 bg-emerald-50 text-emerald-900'}`}>
+            {outputGrew
+              ? <AlertCircle aria-hidden="true" size={18} className="mt-0.5 shrink-0" />
+              : <CheckCircle2 aria-hidden="true" size={18} className="mt-0.5 shrink-0" />}
+            <p>{notice}</p>
+          </div>
+        )}
+
+        {!imageFile ? (
+          <section aria-labelledby="upload-heading" className="mx-auto mt-8 max-w-3xl">
+            <div
+              onDragOver={(event) => {
+                event.preventDefault()
+                setIsDragging(true)
+              }}
+              onDragLeave={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget)) setIsDragging(false)
+              }}
+              onDrop={handleDrop}
+              className={`rounded-2xl border-2 border-dashed p-6 text-center transition sm:p-10 ${isDragging ? 'border-indigo-500 bg-indigo-50' : 'border-slate-300 bg-white hover:border-indigo-300 hover:bg-slate-50'}`}
+            >
+              <span className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-700">
+                <ImagePlus aria-hidden="true" size={27} />
+              </span>
+              <h2 id="upload-heading" className="mt-5 text-lg font-semibold text-slate-950">
+                Choose an image to compress
+              </h2>
+              <p className="mt-2 text-sm text-slate-600">
+                Drag and drop an image here, or browse files from your device.
+              </p>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp"
+                onChange={handleFileInput}
+                className="sr-only"
+                aria-label="Select an image file"
+              />
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                className="mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                <Upload aria-hidden="true" size={17} />
+                Select image
+              </button>
+              <p className="mt-5 text-xs text-slate-500">
+                Supported: JPG, JPEG, PNG, WebP <span aria-hidden="true">·</span> Maximum file size: 20 MB
+              </p>
+            </div>
+          </section>
+        ) : (
+          <section aria-label="Image compression workspace" className="mx-auto mt-8 max-w-5xl">
+            <div className="grid gap-5 lg:grid-cols-2">
+              <article className="min-w-0 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold text-slate-950">Original image</p>
+                    <p className="mt-1 truncate text-sm text-slate-500" title={imageFile.name}>
+                      {imageFile.name}
+                    </p>
+                  </div>
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-600">
+                    <FileImage aria-hidden="true" size={18} />
+                  </span>
+                </div>
+                <div className="mt-4">
+                  <ImagePreview src={imageUrl} alt={`Original ${imageFile.name}`} />
+                </div>
+                <FileDetails file={imageFile} dimensions={dimensions} />
+              </article>
+
+              {compressedFile ? (
+                <article className="min-w-0 rounded-2xl border border-indigo-100 bg-white p-4 shadow-sm sm:p-5">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <p className="text-sm font-semibold text-slate-950">Compressed image</p>
+                      <p className="mt-1 truncate text-sm text-slate-500" title={getCompressedFilename(imageFile.name, getImageFormat(imageFile).extension)}>
+                        {getCompressedFilename(imageFile.name, getImageFormat(imageFile).extension)}
+                      </p>
+                    </div>
+                    <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-indigo-50 text-indigo-700">
+                      <CheckCircle2 aria-hidden="true" size={18} />
+                    </span>
+                  </div>
+                  <div className="mt-4">
+                    <ImagePreview src={compressedUrl} alt={`Compressed ${imageFile.name}`} />
+                  </div>
+                  <dl className="mt-4 grid grid-cols-2 gap-3 text-sm">
+                    <div>
+                      <dt className="text-slate-500">New file size</dt>
+                      <dd className="mt-1 font-medium text-slate-900">{formatFileSize(compressedFile.size)}</dd>
+                    </div>
+                    <div>
+                      <dt className="text-slate-500">{outputGrew ? 'Size change' : 'Size reduction'}</dt>
+                      <dd className="mt-1 font-medium text-slate-900">
+                        {outputGrew
+                          ? `No reduction (${formatFileSize(compressedFile.size - imageFile.size)} larger)`
+                          : `${formatFileSize(savedBytes)} (${reduction}%)`}
+                      </dd>
+                    </div>
+                  </dl>
+                  <button
+                    type="button"
+                    onClick={downloadImage}
+                    className="mt-5 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    <Download aria-hidden="true" size={17} />
+                    Download compressed image
+                  </button>
+                  {downloadMessage && <p role="status" className="mt-2 text-center text-sm text-slate-600">{downloadMessage}</p>}
+                </article>
+              ) : (
+                <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+                  <h2 className="text-base font-semibold text-slate-950">Compression settings</h2>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                    Choose an image quality target. Results vary by format and image content.
+                  </p>
+
+                  <div className="mt-7">
+                    <div className="flex items-center justify-between">
+                      <label htmlFor="quality" className="text-sm font-medium text-slate-800">
+                        Image quality
+                      </label>
+                      <output htmlFor="quality" className="rounded-md bg-indigo-50 px-2.5 py-1 text-sm font-semibold text-indigo-700">
+                        {quality}%
+                      </output>
+                    </div>
+                    <input
+                      id="quality"
+                      type="range"
+                      min={qualityOptions.min}
+                      max={qualityOptions.max}
+                      step="5"
+                      value={quality}
+                      onChange={(event) => setQuality(Number(event.target.value))}
+                      className="mt-4 h-2 w-full cursor-pointer accent-indigo-600"
+                      aria-describedby="quality-help"
+                    />
+                    <div className="flex justify-between text-xs text-slate-500">
+                      <span>Smaller file</span>
+                      <span>Higher quality</span>
+                    </div>
+                    <p id="quality-help" className="mt-3 text-xs leading-5 text-slate-500">
+                      PNG quality behavior depends on browser encoding and may not follow the slider like JPG or WebP.
+                    </p>
+                  </div>
+
+                  {isCompressing && (
+                    <div className="mt-6" role="status" aria-live="polite">
+                      <div className="flex items-center justify-between text-sm text-slate-600">
+                        <span className="inline-flex items-center gap-2">
+                          <LoaderCircle aria-hidden="true" size={16} className="animate-spin text-indigo-600" />
+                          Compressing locally…
+                        </span>
+                        <span>{progress}%</span>
+                      </div>
+                      <div
+                        role="progressbar"
+                        aria-label="Compression progress"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        aria-valuenow={progress}
+                        className="mt-2 h-2 overflow-hidden rounded-full bg-slate-100"
+                      >
+                        <div className="h-full rounded-full bg-indigo-600 transition-all" style={{ width: `${progress}%` }} />
+                      </div>
+                    </div>
+                  )}
+
+                  <button
+                    type="button"
+                    onClick={compressImage}
+                    disabled={isCompressing || !dimensions}
+                    className="mt-7 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:opacity-60"
+                  >
+                    {isCompressing
+                      ? <><LoaderCircle aria-hidden="true" size={17} className="animate-spin" /> Compressing image…</>
+                      : <><FileImage aria-hidden="true" size={17} /> Compress image</>}
+                  </button>
+                </article>
+              )}
+            </div>
+
+            <div className="mt-5 flex flex-col gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-sm text-slate-600">
+                Quality settings can affect formats differently. Your original dimensions and image format are preserved.
+              </p>
+              <button
+                type="button"
+                onClick={reset}
+                disabled={isCompressing}
+                className="inline-flex min-h-10 shrink-0 items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                {isCompressing
+                  ? <LoaderCircle aria-hidden="true" size={16} className="animate-spin" />
+                  : <><RefreshCw aria-hidden="true" size={16} /> Remove image</>}
+              </button>
+            </div>
+          </section>
+        )}
+
+        <p className="mx-auto mt-8 max-w-3xl text-center text-xs leading-5 text-slate-500">
+          Files up to {formatFileSize(MAX_IMAGE_SIZE_BYTES)} are supported. JPEG and WebP quality controls are approximate;
+          PNG output behavior depends on browser support. No image data is sent to a server.
+        </p>
+      </div>
+    </>
+  )
+}
