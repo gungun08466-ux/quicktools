@@ -372,6 +372,111 @@ export default function QrGenerator() {
             </div>
           </section>
         </section>
+
+        <div className="mx-auto mt-16 max-w-4xl space-y-12 sm:mt-20">
+          <section aria-labelledby="what-is-qr">
+            <h2 id="what-is-qr" className="text-2xl font-bold tracking-tight text-slate-950">
+              What Is a QR Code?
+            </h2>
+            <p className="mt-3 leading-7 text-slate-600">
+              A QR code is a square pattern that a phone or other scanner can
+              read to access the information encoded in it. It can contain
+              ordinary text or a website URL. People commonly use QR codes to
+              share links, contact details written as text, or event
+              information.
+            </p>
+          </section>
+
+          <section aria-labelledby="how-to-generate-qr">
+            <h2 id="how-to-generate-qr" className="text-2xl font-bold tracking-tight text-slate-950">
+              How to Generate a QR Code
+            </h2>
+            <ol className="mt-5 grid gap-4 sm:grid-cols-2">
+              {[
+                ['Enter your content', 'Type or paste text or a URL into the content box. The input must not be empty.'],
+                ['Choose colors', 'Use the foreground and background color pickers to customize the code. The colors must meet the tool’s contrast check.'],
+                ['Choose an image size', 'Choose the 200, 300, or 500 px size setting. Long or complex content may produce an image larger than the selected size.'],
+                ['Preview and save', 'Review the preview, then select Download PNG. If your browser supports image clipboard writing and grants access, you can also select Copy image.'],
+              ].map(([title, description], index) => (
+                <li key={title} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                  <div className="flex items-center gap-3">
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-indigo-50 text-sm font-semibold text-indigo-700">
+                      {index + 1}
+                    </span>
+                    <h3 className="font-semibold text-slate-950">{title}</h3>
+                  </div>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">{description}</p>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          <section aria-labelledby="common-qr-uses">
+            <h2 id="common-qr-uses" className="text-2xl font-bold tracking-tight text-slate-950">
+              Common Uses of QR Codes
+            </h2>
+            <p className="mt-3 leading-7 text-slate-600">
+              A QR code can share a website link, show a restaurant menu URL,
+              point guests to event information or registration, or provide
+              product details. You can also encode other text, such as contact
+              information. This generator stores the text you enter; it does
+              not create a special contact card or registration form.
+            </p>
+          </section>
+
+          <section aria-labelledby="qr-size-color">
+            <h2 id="qr-size-color" className="text-2xl font-bold tracking-tight text-slate-950">
+              QR Code Size and Color
+            </h2>
+            <p className="mt-3 leading-7 text-slate-600">
+              Choose from the 200, 300, or 500 px size settings for the PNG.
+              These are target widths rather than guaranteed final dimensions;
+              long or complex content may result in a larger generated image.
+              Each code includes a quiet zone around its edge. A clear
+              difference between the foreground pattern and background helps
+              scanners distinguish the code. This tool checks the selected
+              colors and generates a code only when their calculated contrast
+              ratio is at least 4.5:1. Passing that check does not guarantee
+              every camera or print will scan it.
+            </p>
+          </section>
+
+          <section aria-labelledby="qr-scannable-tips">
+            <h2 id="qr-scannable-tips" className="text-2xl font-bold tracking-tight text-slate-950">
+              Tips for Scannable QR Codes
+            </h2>
+            <ul className="mt-4 list-disc space-y-2 pl-5 leading-7 text-slate-600">
+              <li>Check that the text or URL is correct before saving the code.</li>
+              <li>Keep the foreground and background clearly distinct; the tool also requires at least a 4.5:1 contrast ratio.</li>
+              <li>Do not cover the code or crop away its quiet zone.</li>
+              <li>Test the downloaded PNG with a phone camera at the size and distance people will use it.</li>
+            </ul>
+          </section>
+
+          <section aria-labelledby="qr-faq">
+            <h2 id="qr-faq" className="text-2xl font-bold tracking-tight text-slate-950">
+              Frequently Asked Questions
+            </h2>
+            <div className="mt-4 divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white px-5 shadow-sm sm:px-6">
+              {[
+                ['Is this QR Code Generator free?', 'Yes. You can generate and download QR codes without an account or payment.'],
+                ['What information can I put in a QR code?', 'You can enter text or a URL. For contact details, you can encode the information as text, but this tool does not create a structured contact card.'],
+                ['Can I customize QR code colors?', 'Yes. Choose foreground and background colors. The tool requires a calculated contrast ratio of at least 4.5:1 before it generates the code.'],
+                ['What image format can I download?', 'The download is a PNG image. Available size settings are 200, 300, and 500 px; the final image may be larger than the selected size for long or complex content.'],
+                ['Can I copy the QR code image?', 'The Copy image button uses the browser Clipboard API. Image clipboard support and permissions vary by browser; if copying is unavailable, download the PNG instead.'],
+                ['Why is my QR code not scanning?', 'Check that it is not cropped or covered, use distinct colors, and try scanning the downloaded image at its intended display size. Also confirm that the encoded text or URL is correct. The contrast check cannot guarantee every scanner will read every image.'],
+                ['Does this QR code expire?', 'The generated code is static: its encoded content does not expire or change through this tool. If it contains a URL, whether that link continues to work depends on the website it points to. This tool does not provide link editing or scan tracking.'],
+              ].map(([question, answer]) => (
+                <details key={question} className="py-4">
+                  <summary className="cursor-pointer font-semibold text-slate-900 marker:text-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-600">
+                    {question}
+                  </summary>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">{answer}</p>
+                </details>
+              ))}
+            </div>
+          </section>
+        </div>
       </div>
     </>
   )
