@@ -41,9 +41,13 @@ export default function PrivacyPolicy() {
             </h2>
             <p className="mt-2">
               The application does not include accounts, analytics, advertising,
-              tracking cookies, or a database. It does not intentionally collect
-              or store the text or files you use in a tool. Your browser may keep
-              files you download according to your browser settings.
+              tracking cookies, or a database, and it does not currently use
+              localStorage or sessionStorage. It does not intentionally collect
+              or store the text or files you use in a tool. Browser-managed
+              downloads and clipboard actions are separate from application
+              storage; your browser may retain downloads according to your
+              settings, and copying writes the selected content to your
+              clipboard when supported and permitted.
             </p>
           </section>
 
@@ -52,12 +56,19 @@ export default function PrivacyPolicy() {
               Website hosting and your browser
             </h2>
             <p className="mt-2">
-              Like other websites, the site must be delivered over the internet.
-              The hosting provider and your browser may process standard
-              connection or diagnostic information to deliver and secure the
-              site. Those practices are governed by the hosting provider and
-              browser policies; they are separate from the local tool processing
-              performed by QuickTools.
+              QuickTools is hosted by Vercel. As part of hosting, delivering,
+              securing, and operating the website, Vercel may process technical
+              and connection information. This hosting-related processing is
+              separate from the local processing performed by the tools. For
+              details, see{' '}
+              <a
+                className="font-medium text-indigo-700 underline"
+                href="https://vercel.com/legal/privacy-notice"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Vercel’s Privacy Notice
+              </a>.
             </p>
           </section>
 
@@ -88,9 +99,10 @@ export default function PrivacyPolicy() {
               Contact
             </h2>
             <p className="mt-2">
-              A public privacy contact address has not yet been configured.
-              Please check the <Link className="font-medium text-indigo-700 underline" to="/contact">Contact page</Link>
-              {' '}for available contact information.
+              For privacy questions or general support, please visit the{' '}
+              <Link className="font-medium text-indigo-700 underline" to="/contact">
+                Contact page
+              </Link>.
             </p>
           </section>
 
