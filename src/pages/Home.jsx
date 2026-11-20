@@ -6,7 +6,6 @@ import {
   FileJson,
   Files,
   Image,
-  LockKeyhole,
   MousePointer2,
   QrCode,
   Search,
@@ -22,28 +21,28 @@ import ToolCard from '../components/tools/ToolCard.jsx'
 const tools = [
   {
     title: 'Image Compressor',
-    description: 'Make image files smaller while keeping them looking sharp.',
+    description: 'Reduce an image’s file size before sharing it or using it on a website.',
     to: '/image-compressor',
     icon: Image,
     category: 'Images',
   },
   {
     title: 'JSON Formatter',
-    description: 'Format, organize, and inspect JSON in a readable layout.',
+    description: 'Format and validate JSON when working with API responses or configuration data.',
     to: '/json-formatter',
     icon: FileJson,
     category: 'Developer',
   },
   {
     title: 'PDF Merger',
-    description: 'Bring multiple PDF documents together into one file.',
+    description: 'Combine multiple PDF documents, such as reports, into one file.',
     to: '/pdf-merger',
     icon: Files,
     category: 'PDF',
   },
   {
     title: 'QR Code Generator',
-    description: 'Turn text or a link into a QR code you can share.',
+    description: 'Turn text or a website URL into a QR code that others can scan.',
     to: '/qr-generator',
     icon: QrCode,
     category: 'Generator',
@@ -62,8 +61,8 @@ const benefits = [
     icon: UserRoundCheck,
   },
   {
-    title: 'Privacy-minded',
-    description: 'Tools are designed to process your files in your browser.',
+    title: 'Processed in your browser',
+    description: 'Image and PDF files, along with JSON and QR content, are processed locally in your browser.',
     icon: ShieldCheck,
   },
   {
@@ -75,18 +74,18 @@ const benefits = [
 
 const steps = [
   {
-    title: 'Choose a tool',
-    description: 'Pick the utility that fits what you need to do.',
+    title: 'Choose the tool you need',
+    description: 'Pick the utility that fits your task.',
     icon: Search,
   },
   {
-    title: 'Add your input',
-    description: 'Enter your text or select the file you want to work with.',
+    title: 'Add your text or files',
+    description: 'Enter your content or select files, then use the available settings.',
     icon: FileInput,
   },
   {
-    title: 'Get your result',
-    description: 'Review the result and save it when you are ready.',
+    title: 'Copy or download your result',
+    description: 'Copy the result or download the generated file, depending on the tool.',
     icon: ArrowDown,
   },
 ]
@@ -132,14 +131,14 @@ export default function Home() {
         }`}>
           <div className="max-w-2xl">
             <span className="inline-flex items-center gap-2 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-sm font-medium text-indigo-700">
-              <LockKeyhole aria-hidden="true" size={15} />
-              Free tools, no account needed
+              <MousePointer2 aria-hidden="true" size={15} />
+              Four focused online tools
             </span>
             <h1 className="mt-6 text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl lg:leading-[1.08]">
               Free Online Tools to Make Your Work Easier
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-8 text-slate-600">
-              Get everyday tasks done faster with simple, free online tools. No account or registration required. Just choose a tool and get started!
+              Use a focused browser-based tool for a common task, like preparing an image to share or making API JSON easier to read.
             </p>
 
             <form
@@ -252,8 +251,8 @@ export default function Home() {
               ))}
             </div>
             <div className="mt-4 flex items-center gap-2 rounded-xl bg-white px-3 py-2.5 text-xs text-slate-600">
-              <ShieldCheck aria-hidden="true" size={16} className="text-emerald-600" />
-              Private, simple, and ready when you are
+              <MousePointer2 aria-hidden="true" size={16} className="text-emerald-600" />
+              Simple tools that run in your browser
             </div>
           </div>}
         </div>
@@ -267,7 +266,7 @@ export default function Home() {
         <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-sm font-semibold uppercase tracking-wider text-indigo-700">
-              Get started
+              Choose a tool
             </p>
             <h2 id="tools-heading" className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
               Popular tools
@@ -351,7 +350,7 @@ export default function Home() {
             Make your next task a little easier.
           </h2>
           <p className="mx-auto mt-3 max-w-xl leading-7 text-slate-300">
-            Explore free tools designed to help you get things done—no account needed.
+            Browse the tools above to find the right fit for your task.
           </p>
           <button
             type="button"
