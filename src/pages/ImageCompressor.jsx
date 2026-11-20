@@ -467,6 +467,108 @@ export default function ImageCompressor() {
           Files up to {formatFileSize(MAX_IMAGE_SIZE_BYTES)} are supported. JPEG and WebP quality controls are approximate;
           PNG output behavior depends on browser support. No image data is sent to a server.
         </p>
+
+        <div className="mx-auto mt-16 max-w-4xl space-y-12 sm:mt-20">
+          <section aria-labelledby="how-to-compress">
+            <h2 id="how-to-compress" className="text-2xl font-bold tracking-tight text-slate-950">
+              How to Compress an Image
+            </h2>
+            <ol className="mt-5 grid gap-4 sm:grid-cols-2">
+              {[
+                ['Select an image', 'Choose a JPG, PNG, or WebP file, or drag and drop it into the upload area.'],
+                ['Adjust the quality', 'Move the quality slider toward a smaller file or higher visual quality.'],
+                ['Compress the image', 'Select Compress image and wait while your browser processes the file.'],
+                ['Review and download', 'Compare the original and compressed sizes, then download the result if it suits your needs.'],
+              ].map(([title, description], index) => (
+                <li key={title} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                  <div className="flex items-center gap-3">
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-indigo-50 text-sm font-semibold text-indigo-700">
+                      {index + 1}
+                    </span>
+                    <h3 className="font-semibold text-slate-950">{title}</h3>
+                  </div>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">{description}</p>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          <section aria-labelledby="supported-formats">
+            <h2 id="supported-formats" className="text-2xl font-bold tracking-tight text-slate-950">
+              Supported Image Formats
+            </h2>
+            <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+              <p className="leading-7 text-slate-600">
+                Upload JPG or JPEG, PNG, and WebP images up to 20 MB each. The
+                compressor keeps the original format and image dimensions. The
+                amount of size reduction depends on the format, image content,
+                and quality setting; some images may change very little.
+              </p>
+            </div>
+          </section>
+
+          <section aria-labelledby="why-compress">
+            <h2 id="why-compress" className="text-2xl font-bold tracking-tight text-slate-950">
+              Why Compress Images?
+            </h2>
+            <p className="mt-3 leading-7 text-slate-600">
+              Smaller image files can take less storage and may be quicker to
+              transfer, which can help a website load faster when you use
+              optimized images. They can also be easier to share or upload when
+              a service has file-size limits. Actual results depend on the image
+              and where you use it.
+            </p>
+          </section>
+
+          <section aria-labelledby="image-quality">
+            <h2 id="image-quality" className="text-2xl font-bold tracking-tight text-slate-950">
+              How Does Image Quality Work?
+            </h2>
+            <p className="mt-3 leading-7 text-slate-600">
+              The quality slider sets a target for the encoder: moving toward
+              smaller files can reduce visual detail, while moving toward higher
+              quality may preserve more detail but produce a larger file. Check
+              the preview and file size to choose a result that works for you.
+              JPEG and WebP respond approximately to the setting. PNG compression
+              may not respond to the slider in the same way, because browser
+              support and image content affect its output.
+            </p>
+          </section>
+
+          <section aria-labelledby="image-limitations">
+            <h2 id="image-limitations" className="text-2xl font-bold tracking-tight text-slate-950">
+              Important Limitations
+            </h2>
+            <ul className="mt-4 list-disc space-y-2 pl-5 leading-7 text-slate-600">
+              <li>Compression does not always make a file smaller; some images may produce a larger result.</li>
+              <li>Very large or complex images may be limited by your device’s available browser memory and image-processing capabilities.</li>
+              <li>Processing happens locally in your browser. The image is not uploaded to a QuickTools server.</li>
+            </ul>
+          </section>
+
+          <section aria-labelledby="image-faq">
+            <h2 id="image-faq" className="text-2xl font-bold tracking-tight text-slate-950">
+              Frequently Asked Questions
+            </h2>
+            <div className="mt-4 divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white px-5 shadow-sm sm:px-6">
+              {[
+                ['Is this image compressor free?', 'Yes. You can use the tool without an account or payment.'],
+                ['Are my images uploaded to a server?', 'No. The selected image is processed in your browser and is not uploaded to a QuickTools processing server.'],
+                ['Which image formats are supported?', 'The compressor accepts JPG/JPEG, PNG, and WebP images. The output keeps the original format.'],
+                ['What is the maximum file size?', `Each image can be up to ${formatFileSize(MAX_IMAGE_SIZE_BYTES)}.`],
+                ['Does compression reduce image quality?', 'It can. Lower quality settings may reduce visual detail, so review the preview before downloading. The quality setting behaves differently for PNG than for JPEG or WebP.'],
+                ['Why is my compressed image sometimes larger?', 'Some images are already efficiently encoded or do not compress well with the selected setting. In that case, the encoded result can be the same size or larger.'],
+              ].map(([question, answer]) => (
+                <details key={question} className="py-4">
+                  <summary className="cursor-pointer font-semibold text-slate-900 marker:text-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-600">
+                    {question}
+                  </summary>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">{answer}</p>
+                </details>
+              ))}
+            </div>
+          </section>
+        </div>
       </div>
     </>
   )
