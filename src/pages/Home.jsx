@@ -223,7 +223,6 @@ export default function Home() {
           </div>
 
           {!hasActiveSearch && <div
-            aria-hidden="true"
             className="relative mx-auto w-full max-w-md rounded-3xl border border-slate-200 bg-slate-50 p-5 shadow-sm sm:p-7"
           >
             <div className="flex items-center justify-between border-b border-slate-200 pb-4">
