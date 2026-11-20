@@ -1,5 +1,29 @@
-import { ShieldCheck, Wrench } from 'lucide-react'
+import { ArrowUpRight, ShieldCheck, Wrench } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import PageMetadata from '../components/seo/PageMetadata.jsx'
+
+const tools = [
+  {
+    title: 'Image Compressor',
+    description: 'Reduce the file size of JPG, PNG, or WebP images.',
+    to: '/image-compressor',
+  },
+  {
+    title: 'JSON Formatter',
+    description: 'Format, minify, validate, and copy JSON text.',
+    to: '/json-formatter',
+  },
+  {
+    title: 'PDF Merger',
+    description: 'Combine multiple PDF files into one document.',
+    to: '/pdf-merger',
+  },
+  {
+    title: 'QR Code Generator',
+    description: 'Create a downloadable QR code from text or a URL.',
+    to: '/qr-generator',
+  },
+]
 
 export default function AboutPage() {
   return (
@@ -18,22 +42,75 @@ export default function AboutPage() {
             About QuickTools
           </h1>
           <p className="mt-3 text-base leading-7 text-slate-600 sm:text-lg">
-            QuickTools is a collection of free utilities designed to help with
-            everyday tasks without requiring an account.
+            QuickTools is a website offering simple, free online utilities to
+            help people complete everyday digital tasks more easily. The tools
+            are designed to be straightforward to use, with no account required.
           </p>
         </header>
-        <section className="mt-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
-          <h2 className="text-xl font-semibold text-slate-950">Tools that work locally</h2>
-          <p className="mt-2 leading-7 text-slate-600">
-            Image compression, PDF merging, JSON formatting, and QR generation run
-            in your browser. The app does not upload the input content to a
-            QuickTools processing server.
-          </p>
-          <p className="mt-4 flex items-start gap-2 text-sm leading-6 text-emerald-900">
-            <ShieldCheck aria-hidden="true" size={17} className="mt-1 shrink-0 text-emerald-700" />
-            <span>Use the tools without signing in or creating an account.</span>
-          </p>
-        </section>
+
+        <div className="mt-8 space-y-6">
+          <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+            <h2 className="text-xl font-semibold text-slate-950">Our Purpose</h2>
+            <p className="mt-2 leading-7 text-slate-600">
+              Our goal is to make common digital tasks easier with useful tools
+              and a simple interface. You can use the available tools without
+              creating an account.
+            </p>
+          </section>
+
+          <section aria-labelledby="about-tools" className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+            <h2 id="about-tools" className="text-xl font-semibold text-slate-950">
+              Our Tools
+            </h2>
+            <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+              {tools.map(({ title, description, to }) => (
+                <li key={to}>
+                  <Link
+                    to={to}
+                    className="group flex h-full items-start justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4 transition hover:border-indigo-200 hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    <span>
+                      <span className="font-semibold text-slate-950">{title}</span>
+                      <span className="mt-1 block text-sm leading-6 text-slate-600">{description}</span>
+                    </span>
+                    <ArrowUpRight aria-hidden="true" size={17} className="mt-0.5 shrink-0 text-slate-400 transition group-hover:text-indigo-600" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+            <h2 className="text-xl font-semibold text-slate-950">Privacy and Ease of Use</h2>
+            <p className="mt-2 leading-7 text-slate-600">
+              Image compression and PDF merging process files in your browser.
+              JSON formatting and QR code generation also run in the browser
+              using the text you provide. The website itself is delivered over
+              the internet, and hosting or browser services may process
+              connection information. See our{' '}
+              <Link className="font-medium text-indigo-700 underline" to="/privacy">
+                Privacy Policy
+              </Link>{' '}
+              for more details.
+            </p>
+            <p className="mt-4 flex items-start gap-2 text-sm leading-6 text-emerald-900">
+              <ShieldCheck aria-hidden="true" size={17} className="mt-1 shrink-0 text-emerald-700" />
+              <span>No account is needed to use the available tools.</span>
+            </p>
+          </section>
+
+          <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+            <h2 className="text-xl font-semibold text-slate-950">Continuous Improvement</h2>
+            <p className="mt-2 leading-7 text-slate-600">
+              QuickTools aims to improve its existing tools and introduce useful
+              new ones over time. If you find an issue or have an idea for a
+              tool, please share it through our{' '}
+              <Link className="font-medium text-indigo-700 underline" to="/contact">
+                Contact page
+              </Link>.
+            </p>
+          </section>
+        </div>
       </article>
     </>
   )
