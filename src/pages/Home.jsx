@@ -13,6 +13,7 @@ import {
   QrCode,
   Search,
   ShieldCheck,
+  Sparkles,
   UserRoundCheck,
   X,
 } from 'lucide-react'
@@ -28,6 +29,7 @@ const tools = [
     to: '/image-compressor',
     icon: Image,
     category: 'Images',
+    accent: 'bg-sky-50 text-sky-700 ring-sky-100',
   },
   {
     title: 'Image Resizer',
@@ -35,6 +37,7 @@ const tools = [
     to: '/image-resizer',
     icon: Image,
     category: 'Images',
+    accent: 'bg-violet-50 text-violet-700 ring-violet-100',
   },
   {
     title: 'JSON Formatter',
@@ -42,6 +45,7 @@ const tools = [
     to: '/json-formatter',
     icon: FileJson,
     category: 'Developer',
+    accent: 'bg-amber-50 text-amber-700 ring-amber-100',
   },
   {
     title: 'PDF Merger',
@@ -49,6 +53,7 @@ const tools = [
     to: '/pdf-merger',
     icon: Files,
     category: 'PDF',
+    accent: 'bg-rose-50 text-rose-700 ring-rose-100',
   },
   {
     title: 'QR Code Generator',
@@ -56,6 +61,7 @@ const tools = [
     to: '/qr-generator',
     icon: QrCode,
     category: 'Generator',
+    accent: 'bg-fuchsia-50 text-fuchsia-700 ring-fuchsia-100',
   },
   {
     title: 'Password Generator',
@@ -63,6 +69,7 @@ const tools = [
     to: '/password-generator',
     icon: KeyRound,
     category: 'Security',
+    accent: 'bg-emerald-50 text-emerald-700 ring-emerald-100',
   },
   {
     title: 'JPG to PDF Converter',
@@ -70,6 +77,7 @@ const tools = [
     to: '/jpg-to-pdf',
     icon: FileImage,
     category: 'PDF',
+    accent: 'bg-orange-50 text-orange-700 ring-orange-100',
   },
   {
     title: 'PDF to JPG Converter',
@@ -77,6 +85,7 @@ const tools = [
     to: '/pdf-to-jpg',
     icon: FileImage,
     category: 'PDF',
+    accent: 'bg-cyan-50 text-cyan-700 ring-cyan-100',
   },
   {
     title: 'PDF Compressor',
@@ -84,6 +93,7 @@ const tools = [
     to: '/pdf-compressor',
     icon: Files,
     category: 'PDF',
+    accent: 'bg-indigo-50 text-indigo-700 ring-indigo-100',
   },
   {
     title: 'Word Counter',
@@ -91,6 +101,7 @@ const tools = [
     to: '/word-counter',
     icon: FileText,
     category: 'Text',
+    accent: 'bg-teal-50 text-teal-700 ring-teal-100',
   },
 ]
 
@@ -168,27 +179,37 @@ export default function Home() {
         description="Use QuickTools' free online tools to compress and resize images, compress PDFs, count words, format JSON, merge PDFs, convert JPGs to PDF or PDF pages to JPG, create QR codes, and generate passwords—quickly, with no account required."
       />
 
-      <section className="border-b border-slate-200 bg-white">
-        <div className={`mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-16 ${
+      <section className="relative isolate overflow-hidden border-b border-indigo-100/80 bg-gradient-to-br from-slate-50 via-white to-indigo-50/80">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute -left-40 -top-56 size-[34rem] rounded-full bg-indigo-200/30 blur-3xl" />
+          <div className="absolute -right-36 top-8 size-[28rem] rounded-full bg-violet-200/30 blur-3xl" />
+          <div className="absolute bottom-0 left-1/2 h-px w-3/4 -translate-x-1/2 bg-gradient-to-r from-transparent via-indigo-200/70 to-transparent" />
+        </div>
+        <div className={`relative mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 py-7 sm:px-6 sm:py-9 lg:px-8 lg:py-11 ${
           hasActiveSearch
             ? 'lg:grid-cols-1 lg:justify-items-center'
-            : 'lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-16'
+            : 'lg:grid-cols-[1.08fr_0.92fr] lg:items-start lg:gap-12'
         }`}>
           <div className="max-w-2xl">
-            <span className="inline-flex items-center gap-2 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-sm font-medium text-indigo-700">
-              <MousePointer2 aria-hidden="true" size={15} />
-              Ten focused online tools
+            <span className="inline-flex items-center gap-2 rounded-full border border-indigo-100/90 bg-white/80 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-indigo-700 shadow-sm shadow-indigo-100/70 backdrop-blur">
+              <span className="flex size-5 items-center justify-center rounded-full bg-indigo-100 text-indigo-700">
+                <Sparkles aria-hidden="true" size={12} />
+              </span>
+              TEN FOCUSED ONLINE TOOLS
             </span>
-            <h1 className="mt-6 text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl lg:leading-[1.08]">
-              Free Online Tools to Make Your Work Easier
+            <h1 className="mt-5 text-[2.4rem] font-bold leading-[1.06] tracking-[-0.045em] text-slate-950 sm:text-5xl lg:mt-6 lg:text-[3.65rem]">
+              <span className="block">Free Online Tools</span>
+              <span className="mt-1 block bg-gradient-to-r from-indigo-700 via-violet-700 to-indigo-500 bg-clip-text text-transparent">
+                to Make Your Work Easier
+              </span>
             </h1>
-            <p className="mt-5 max-w-xl text-lg leading-8 text-slate-600">
+            <p className="mt-4 max-w-xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
               Use a focused browser-based tool for a common task, like preparing an image to share or making API JSON easier to read.
             </p>
 
             <form
               role="search"
-              className="mt-8"
+              className="mt-6"
               onSubmit={(event) => {
                 event.preventDefault()
                 document
@@ -199,19 +220,19 @@ export default function Home() {
               <label htmlFor="tool-search" className="sr-only">
                 Search available tools
               </label>
-              <div className="flex items-center gap-3 rounded-xl border border-slate-300 bg-white p-1.5 pl-4 shadow-sm transition focus-within:border-indigo-400 focus-within:ring-4 focus-within:ring-indigo-100">
-                <Search aria-hidden="true" size={19} className="shrink-0 text-slate-400" />
+              <div className="flex items-center gap-3 rounded-2xl border border-slate-200/90 bg-white p-1.5 pl-4 shadow-lg shadow-indigo-100/60 transition duration-200 focus-within:border-indigo-400 focus-within:ring-4 focus-within:ring-indigo-100/80">
+                <Search aria-hidden="true" size={20} className="shrink-0 text-indigo-500" />
                 <input
                   id="tool-search"
                   type="search"
                   value={searchQuery}
                   onChange={(event) => setSearchQuery(event.target.value)}
                   placeholder="Search for a tool (e.g., Image Compressor, JSON Formatter)"
-                  className="min-w-0 flex-1 border-0 bg-transparent py-2.5 text-sm text-slate-900 outline-none placeholder:text-slate-400"
+                  className="min-w-0 flex-1 border-0 bg-transparent py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400"
                 />
                 <button
                   type="submit"
-                  className="inline-flex shrink-0 items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 px-4 text-sm font-semibold text-white shadow-sm shadow-indigo-200 transition duration-200 hover:-translate-y-0.5 hover:from-indigo-700 hover:to-violet-700 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Search
                 </button>
@@ -257,62 +278,78 @@ export default function Home() {
               </section>
             )}
 
-            <button
-              type="button"
-              onClick={exploreTools}
-              className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-indigo-700 hover:text-indigo-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              Explore tools
-              <ArrowRight aria-hidden="true" size={17} />
-            </button>
-          </div>
-
-          {!hasActiveSearch && <div
-            className="relative mx-auto w-full max-w-md rounded-3xl border border-slate-200 bg-slate-50 p-5 shadow-sm sm:p-7"
-          >
-            <div className="flex items-center justify-between border-b border-slate-200 pb-4">
-              <div>
-                <div className="text-sm font-semibold text-slate-900">Your tools, all in one place</div>
-                <div className="mt-1 text-xs text-slate-500">Pick up where you need</div>
-              </div>
-              <span className="flex size-9 items-center justify-center rounded-full bg-white text-indigo-600 shadow-sm">
-                <MousePointer2 aria-hidden="true" size={17} />
+            <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1">
+              <button
+                type="button"
+                onClick={exploreTools}
+                className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-slate-950 px-5 text-sm font-semibold text-white shadow-md shadow-slate-300/60 transition duration-200 hover:-translate-y-0.5 hover:bg-indigo-950 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                Explore all tools
+                <ArrowDown aria-hidden="true" size={16} />
+              </button>
+              <span className="text-sm font-medium text-slate-500">
+                Free, simple, and ready when you are
               </span>
             </div>
-            <div className="mt-4 grid grid-cols-2 gap-3">
-              {tools.map(({ title, icon: Icon, to }) => (
-                <Link
-                  key={to}
-                  to={to}
-                  aria-label={`Open ${title}`}
-                  className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-200 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  <span className="flex size-9 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700">
-                    <Icon aria-hidden="true" size={18} />
+          </div>
+
+          {!hasActiveSearch && (
+            <div className="relative mx-auto w-full max-w-[34rem] rounded-[1.75rem] border border-white/90 bg-white/75 p-4 shadow-2xl shadow-indigo-200/50 ring-1 ring-indigo-100/80 backdrop-blur-xl sm:p-5">
+              <div className="flex items-center justify-between border-b border-slate-100 px-1 pb-3.5">
+                <div className="flex items-center gap-3">
+                  <span className="flex size-10 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-600 to-violet-600 text-white shadow-md shadow-indigo-200">
+                    <MousePointer2 aria-hidden="true" size={19} />
                   </span>
-                  <div className="mt-4 text-xs font-semibold text-slate-800">{title}</div>
-                </Link>
-              ))}
+                  <div>
+                    <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-indigo-600">QuickTools library</div>
+                    <div className="mt-0.5 text-sm font-semibold text-slate-900">Pick a tool and get moving</div>
+                  </div>
+                </div>
+                <span className="rounded-full border border-indigo-100 bg-indigo-50 px-2.5 py-1 text-xs font-semibold text-indigo-700">
+                  10 tools
+                </span>
+              </div>
+              <div className="mt-3 grid grid-cols-2 gap-2.5">
+                {tools.map(({ title, icon: Icon, to, category, accent }) => (
+                  <Link
+                    key={to}
+                    to={to}
+                    aria-label={`Open ${title}`}
+                    className="group flex min-h-[3.75rem] min-w-0 items-center gap-2.5 rounded-2xl border border-slate-100 bg-white/90 px-2.5 py-2 shadow-sm shadow-slate-200/50 transition duration-200 hover:-translate-y-0.5 hover:border-indigo-200 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:min-h-[4rem] sm:gap-3 sm:px-3"
+                  >
+                    <span className={`flex size-9 shrink-0 items-center justify-center rounded-xl ring-1 transition group-hover:scale-105 ${accent}`}>
+                      <Icon aria-hidden="true" size={17} />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block truncate text-xs font-semibold leading-4 text-slate-800 sm:text-[13px]">{title}</span>
+                      <span className="mt-0.5 block text-[10px] font-medium uppercase tracking-wide text-slate-400">{category}</span>
+                    </span>
+                  </Link>
+                ))}
+              </div>
+              <div className="mt-3 flex items-center justify-between rounded-xl bg-gradient-to-r from-indigo-50/90 to-violet-50/70 px-3 py-2.5 text-xs text-slate-600">
+                <span className="flex items-center gap-2 font-medium">
+                  <ShieldCheck aria-hidden="true" size={15} className="text-indigo-600" />
+                  Your files stay on your device
+                </span>
+                <ArrowRight aria-hidden="true" size={15} className="text-indigo-500" />
+              </div>
             </div>
-            <div className="mt-4 flex items-center gap-2 rounded-xl bg-white px-3 py-2.5 text-xs text-slate-600">
-              <MousePointer2 aria-hidden="true" size={16} className="text-emerald-600" />
-              Simple tools that run in your browser
-            </div>
-          </div>}
+          )}
         </div>
       </section>
 
       <section
         id="popular-tools"
         aria-labelledby="tools-heading"
-        className="scroll-mt-8 mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
+        className="scroll-mt-8 mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-[4.5rem]"
       >
         <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-sm font-semibold uppercase tracking-wider text-indigo-700">
               Choose a tool
             </p>
-            <h2 id="tools-heading" className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
+            <h2 id="tools-heading" className="mt-2 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
               Popular tools
             </h2>
             <p className="mt-2 text-slate-600">
@@ -325,29 +362,29 @@ export default function Home() {
         </div>
 
         {tools.length > 0 ? (
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {tools.map((tool) => <ToolCard key={tool.to} {...tool} />)}
           </div>
         ) : null}
       </section>
 
-      <section aria-labelledby="benefits-heading" className="border-y border-slate-200 bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+      <section aria-labelledby="benefits-heading" className="border-y border-indigo-100/80 bg-gradient-to-b from-white via-indigo-50/50 to-white">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-sm font-semibold uppercase tracking-wider text-indigo-700">
               Why QuickTools
             </p>
-            <h2 id="benefits-heading" className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
+            <h2 id="benefits-heading" className="mt-2 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
               Useful tools without the fuss
             </h2>
             <p className="mt-3 leading-7 text-slate-600">
               Get what you need, then get on with your day.
             </p>
           </div>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {benefits.map(({ title, description, icon: Icon }) => (
-              <article key={title} className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-                <span className="flex size-11 items-center justify-center rounded-xl bg-white text-indigo-700 shadow-sm">
+              <article key={title} className="group rounded-2xl border border-white bg-white/90 p-5 shadow-sm shadow-indigo-100/60 ring-1 ring-indigo-100/80 transition duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-indigo-100/70">
+                <span className="flex size-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700 ring-1 ring-indigo-100 transition group-hover:bg-indigo-600 group-hover:text-white">
                   <Icon aria-hidden="true" size={21} />
                 </span>
                 <h3 className="mt-4 font-semibold text-slate-950">{title}</h3>
@@ -358,20 +395,20 @@ export default function Home() {
         </div>
       </section>
 
-      <section aria-labelledby="steps-heading" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+      <section aria-labelledby="steps-heading" className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-semibold uppercase tracking-wider text-indigo-700">
             How it works
           </p>
-          <h2 id="steps-heading" className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
+          <h2 id="steps-heading" className="mt-2 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
             Three steps. That’s it.
           </h2>
         </div>
-        <ol className="mt-10 grid gap-5 md:grid-cols-3">
+        <ol className="mt-8 grid gap-4 md:grid-cols-3">
           {steps.map(({ title, description, icon: Icon }, index) => (
-            <li key={title} className="relative rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <li key={title} className="relative rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm shadow-slate-200/60 transition duration-200 hover:-translate-y-1 hover:border-indigo-200 hover:shadow-lg sm:p-6">
               <div className="flex items-center justify-between">
-                <span className="flex size-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700">
+                <span className="flex size-11 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-50 to-violet-100 text-indigo-700 ring-1 ring-indigo-100">
                   <Icon aria-hidden="true" size={21} />
                 </span>
                 <span className="text-sm font-semibold text-slate-400">
@@ -385,25 +422,29 @@ export default function Home() {
         </ol>
       </section>
 
-      <section className="px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
-        <div className="mx-auto max-w-7xl rounded-3xl bg-slate-900 px-6 py-12 text-center sm:px-10 sm:py-14">
-          <p className="text-sm font-semibold uppercase tracking-wider text-indigo-300">
-            Ready when you are
-          </p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Make your next task a little easier.
-          </h2>
-          <p className="mx-auto mt-3 max-w-xl leading-7 text-slate-300">
-            Browse the tools above to find the right fit for your task.
-          </p>
-          <button
-            type="button"
-            onClick={exploreTools}
-            className="mt-7 inline-flex items-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-indigo-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-          >
-            Explore all tools
-            <ArrowRight aria-hidden="true" size={17} />
-          </button>
+      <section className="px-4 pb-12 sm:px-6 sm:pb-16 lg:px-8">
+        <div className="relative isolate mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-gradient-to-br from-indigo-950 via-slate-900 to-violet-950 px-6 py-10 text-center shadow-2xl shadow-indigo-200/50 sm:px-10 sm:py-14">
+          <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-40 size-96 rounded-full bg-violet-500/20 blur-3xl" />
+          <div aria-hidden="true" className="pointer-events-none absolute -bottom-48 -left-20 size-96 rounded-full bg-indigo-500/20 blur-3xl" />
+          <div className="relative">
+            <p className="text-sm font-semibold uppercase tracking-wider text-indigo-200">
+              Ready when you are
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              Make your next task a little easier.
+            </h2>
+            <p className="mx-auto mt-3 max-w-xl leading-7 text-indigo-100/80">
+              Browse the tools above to find the right fit for your task.
+            </p>
+            <button
+              type="button"
+              onClick={exploreTools}
+              className="mt-7 inline-flex min-h-12 items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-indigo-950 shadow-lg shadow-black/10 transition duration-200 hover:-translate-y-0.5 hover:bg-indigo-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            >
+              Explore all tools
+              <ArrowRight aria-hidden="true" size={17} />
+            </button>
+          </div>
         </div>
       </section>
     </>
