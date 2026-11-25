@@ -8,9 +8,7 @@ import {
   FilePlus2,
   FileText,
   LoaderCircle,
-  LockKeyhole,
   Plus,
-  ShieldCheck,
   Trash2,
 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
@@ -252,29 +250,14 @@ export default function PdfMerger() {
         title="PDF Merger"
         description="Merge multiple PDF files locally in your browser. Reorder pages, combine documents, and download one PDF without uploading your files."
       />
-      <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
-        <header className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-sm font-medium text-indigo-700">
-            <ShieldCheck aria-hidden="true" size={16} />
-            Private, browser-based processing
-          </span>
-          <h1 className="mt-5 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+      <div className="mx-auto max-w-5xl tool-page-shell">
+        <header className="tool-page-heading">
+          <h1 className="tool-page-title">
             PDF Merger
           </h1>
-          <p className="mt-3 text-base leading-7 text-slate-600 sm:text-lg">
-            Combine multiple PDF files into one document. Your files are processed
-            locally in your browser and are never uploaded.
-          </p>
         </header>
 
-        <div className="mx-auto mt-8 max-w-4xl rounded-xl border border-emerald-100 bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
-          <p className="flex items-start gap-2">
-            <LockKeyhole aria-hidden="true" size={17} className="mt-0.5 shrink-0 text-emerald-700" />
-            <span>Files stay on your device. At least two PDFs are required; each file can be up to 25 MB.</span>
-          </p>
-        </div>
-
-        <section aria-labelledby="pdf-upload-heading" className="mx-auto mt-6 max-w-4xl">
+        <section aria-labelledby="pdf-upload-heading" className="mx-auto max-w-4xl">
           <div
             onDragOver={(event) => {
               event.preventDefault()
@@ -284,16 +267,14 @@ export default function PdfMerger() {
               if (!event.currentTarget.contains(event.relatedTarget)) setIsDragging(false)
             }}
             onDrop={handleDrop}
-            className={`rounded-2xl border-2 border-dashed p-6 text-center transition sm:p-8 ${
-              isDragging
-                ? 'border-indigo-500 bg-indigo-50'
-                : 'border-slate-300 bg-white hover:border-indigo-300 hover:bg-slate-50'
+            className={`tool-dropzone p-6 text-center sm:p-9 ${
+              isDragging ? 'border-indigo-500 bg-indigo-50 ring-4 ring-indigo-100' : ''
             }`}
           >
-            <span className="mx-auto flex size-12 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700">
+            <span className="mx-auto flex size-16 items-center justify-center rounded-2xl bg-indigo-600 text-white shadow-lg shadow-indigo-200">
               <FilePlus2 aria-hidden="true" size={24} />
             </span>
-            <h2 id="pdf-upload-heading" className="mt-4 font-semibold text-slate-950">
+            <h2 id="pdf-upload-heading" className="mt-4 text-xl font-bold tracking-tight text-slate-950">
               Add PDF files
             </h2>
             <p className="mt-2 text-sm text-slate-600">
@@ -313,7 +294,7 @@ export default function PdfMerger() {
               type="button"
               onClick={() => fileInputRef.current?.click()}
               disabled={isMerging}
-              className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:opacity-60"
+              className="tool-secondary-button mt-5"
             >
               <Plus aria-hidden="true" size={17} />
               Select PDFs
@@ -331,7 +312,7 @@ export default function PdfMerger() {
         )}
 
         {files.length > 0 && (
-          <section aria-labelledby="selected-files-heading" className="mx-auto mt-6 max-w-4xl rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+          <section aria-labelledby="selected-files-heading" className="tool-surface-raised mx-auto mt-6 max-w-4xl p-4 sm:p-6">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <h2 id="selected-files-heading" className="font-semibold text-slate-950">
@@ -348,7 +329,7 @@ export default function PdfMerger() {
               {files.map(({ id, file }, index) => (
                 <li
                   key={id}
-                  className="flex min-w-0 items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3 sm:gap-4 sm:px-4"
+                  className="flex min-w-0 items-center gap-3 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm sm:gap-4 sm:px-4"
                 >
                   <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-white text-sm font-semibold text-slate-600 shadow-sm">
                     {index + 1}
@@ -429,7 +410,7 @@ export default function PdfMerger() {
                 type="button"
                 onClick={mergePdfs}
                 disabled={isMerging}
-                className="inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:opacity-60"
+                className="tool-primary-button flex-1"
               >
                 {isMerging
                   ? <><LoaderCircle aria-hidden="true" size={17} className="animate-spin" /> Merging PDFs…</>
@@ -439,7 +420,7 @@ export default function PdfMerger() {
                 type="button"
                 onClick={reset}
                 disabled={isMerging}
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:opacity-60"
+                className="tool-secondary-button"
               >
                 <Trash2 aria-hidden="true" size={16} />
                 Start again
@@ -449,7 +430,7 @@ export default function PdfMerger() {
         )}
 
         {mergedPdf && status?.fileCount && (
-          <section aria-labelledby="merge-result-heading" className="mx-auto mt-6 max-w-4xl rounded-2xl border border-emerald-200 bg-white p-5 shadow-sm sm:p-6">
+          <section aria-labelledby="merge-result-heading" className="mx-auto mt-6 max-w-4xl rounded-3xl border border-emerald-200 bg-gradient-to-br from-white to-emerald-50/70 p-5 shadow-lg shadow-emerald-100/70 sm:p-6">
             <div className="flex items-start gap-3">
               <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
                 <CheckCircle2 aria-hidden="true" size={21} />
@@ -468,7 +449,7 @@ export default function PdfMerger() {
               <button
                 type="button"
                 onClick={downloadMergedPdf}
-                className="inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="tool-primary-button flex-1"
               >
                 <Download aria-hidden="true" size={17} />
                 Download merged PDF
@@ -476,7 +457,7 @@ export default function PdfMerger() {
               <button
                 type="button"
                 onClick={reset}
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="tool-secondary-button"
               >
                 <FilePlus2 aria-hidden="true" size={16} />
                 Start again

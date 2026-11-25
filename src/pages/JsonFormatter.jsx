@@ -1,6 +1,5 @@
 import {
   AlertCircle,
-  Braces,
   Check,
   Clipboard,
   Eraser,
@@ -161,26 +160,18 @@ export default function JsonFormatter() {
         title="JSON Formatter"
         description="Format, minify, validate, and copy JSON in your browser. Upload a JSON file or paste text—your data stays on your device."
       />
-      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
-        <header className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-sm font-medium text-indigo-700">
-            <Braces aria-hidden="true" size={16} />
-            JSON tools, right in your browser
-          </span>
-          <h1 className="mt-5 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+      <div className="mx-auto max-w-6xl tool-page-shell">
+        <header className="tool-page-heading">
+          <h1 className="tool-page-title">
             JSON Formatter
           </h1>
-          <p className="mt-3 text-base leading-7 text-slate-600 sm:text-lg">
-            Format, minify, and validate JSON in seconds. Your content is processed
-            locally in your browser and is never uploaded.
-          </p>
         </header>
 
         <section
           aria-labelledby="editor-heading"
-          className="mx-auto mt-8 max-w-5xl rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6"
+          className="tool-surface mx-auto max-w-5xl p-4 sm:p-6"
         >
-          <div className="flex flex-col gap-4 border-b border-slate-200 pb-5 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-4 rounded-2xl bg-slate-50 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h2 id="editor-heading" className="font-semibold text-slate-950">
                 JSON editor
@@ -201,7 +192,7 @@ export default function JsonFormatter() {
               <button
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
-                className="inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="tool-secondary-button px-3"
               >
                 <FileUp aria-hidden="true" size={16} />
                 Upload JSON
@@ -209,7 +200,7 @@ export default function JsonFormatter() {
               <button
                 type="button"
                 onClick={clearEditor}
-                className="inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="tool-secondary-button px-3"
               >
                 <Eraser aria-hidden="true" size={16} />
                 Clear
@@ -231,14 +222,14 @@ export default function JsonFormatter() {
             spellCheck="false"
             autoCapitalize="off"
             autoCorrect="off"
-            className="mt-5 min-h-80 w-full resize-y rounded-xl border border-slate-200 bg-slate-50 p-4 font-mono text-sm leading-6 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-400 focus:bg-white focus:ring-4 focus:ring-indigo-100 sm:min-h-[26rem]"
+            className="tool-editor mt-5 min-h-72 w-full resize-y p-4 sm:min-h-[26rem]"
           />
 
           <div className="mt-4 flex flex-wrap gap-2">
             <button
               type="button"
               onClick={() => runTransform('format')}
-              className="inline-flex min-h-10 items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="tool-primary-button"
             >
               <Sparkles aria-hidden="true" size={16} />
               Format
@@ -246,7 +237,7 @@ export default function JsonFormatter() {
             <button
               type="button"
               onClick={() => runTransform('minify')}
-              className="inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="tool-secondary-button"
             >
               <Minimize2 aria-hidden="true" size={16} />
               Minify
@@ -254,7 +245,7 @@ export default function JsonFormatter() {
             <button
               type="button"
               onClick={validateJson}
-              className="inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="tool-secondary-button"
             >
               <Check aria-hidden="true" size={16} />
               Validate
@@ -262,7 +253,7 @@ export default function JsonFormatter() {
             <button
               type="button"
               onClick={copyJson}
-              className="inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="tool-secondary-button"
             >
               <Clipboard aria-hidden="true" size={16} />
               Copy
@@ -273,17 +264,17 @@ export default function JsonFormatter() {
 
           <div
             aria-label="JSON statistics"
-            className="mt-5 grid grid-cols-3 gap-3 border-t border-slate-200 pt-4 text-sm"
+            className="mt-5 grid grid-cols-2 gap-3 text-sm sm:grid-cols-3"
           >
-            <div>
+            <div className="tool-stat-tile">
               <p className="text-slate-500">Characters</p>
               <p className="mt-1 font-semibold tabular-nums text-slate-900">{stats.characters}</p>
             </div>
-            <div>
+            <div className="tool-stat-tile">
               <p className="text-slate-500">Approx. size</p>
               <p className="mt-1 font-semibold tabular-nums text-slate-900">{formatBytes(stats.bytes)}</p>
             </div>
-            <div>
+            <div className="tool-stat-tile">
               <p className="text-slate-500">Lines</p>
               <p className="mt-1 font-semibold tabular-nums text-slate-900">{stats.lines}</p>
             </div>

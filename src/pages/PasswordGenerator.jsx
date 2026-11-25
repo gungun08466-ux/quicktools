@@ -4,7 +4,6 @@ import {
   Clipboard,
   KeyRound,
   RefreshCw,
-  ShieldCheck,
 } from 'lucide-react'
 import { useState } from 'react'
 import PageMetadata from '../components/seo/PageMetadata.jsx'
@@ -126,33 +125,18 @@ export default function PasswordGenerator() {
         title="Password Generator"
         description="Generate a strong random password in your browser. Choose its length and character types, exclude ambiguous characters, and copy it securely."
       />
-      <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
-        <header className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-sm font-medium text-indigo-700">
-            <ShieldCheck aria-hidden="true" size={16} />
-            Private, browser-based generation
-          </span>
-          <h1 className="mt-5 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+      <div className="mx-auto max-w-5xl tool-page-shell">
+        <header className="tool-page-heading">
+          <h1 className="tool-page-title">
             Password Generator
           </h1>
-          <p className="mt-3 text-base leading-7 text-slate-600 sm:text-lg">
-            Create a random password with the length and character types you need.
-            Generation happens locally in your browser; your password is never saved by this tool.
-          </p>
         </header>
-
-        <div className="mx-auto mt-8 max-w-4xl rounded-xl border border-emerald-100 bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
-          <p className="flex items-start gap-2">
-            <ShieldCheck aria-hidden="true" size={17} className="mt-0.5 shrink-0 text-emerald-700" />
-            <span>Passwords are created with your browser’s cryptographic random number generator and stay on this device.</span>
-          </p>
-        </div>
 
         <section
           aria-labelledby="password-settings-heading"
-          className="mx-auto mt-6 grid max-w-4xl gap-5 lg:grid-cols-[1.1fr_0.9fr]"
+          className="mx-auto grid max-w-4xl gap-5 lg:grid-cols-[1.1fr_0.9fr]"
         >
-          <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+          <div className="tool-surface order-2 p-4 sm:p-6 lg:order-1">
             <div className="flex items-start gap-3">
               <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700">
                 <KeyRound aria-hidden="true" size={20} />
@@ -226,26 +210,26 @@ export default function PasswordGenerator() {
             <button
               type="button"
               onClick={generate}
-              className="mt-6 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="tool-primary-button mt-6 w-full"
             >
               <KeyRound aria-hidden="true" size={17} />
               Generate password
             </button>
           </div>
 
-          <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
-            <h2 className="font-semibold text-slate-950">Your password</h2>
+          <div className="tool-surface-raised order-1 p-4 sm:p-6 lg:order-2">
+            <h2 className="text-xl font-bold tracking-tight text-slate-950">Your password</h2>
             <p className="mt-1 text-sm text-slate-500">It will appear here after you generate it.</p>
-            <div className="mt-5 flex min-h-28 items-center rounded-xl border border-slate-200 bg-slate-50 p-4">
+            <div className="mt-5 flex min-h-36 items-center rounded-2xl border border-slate-800 bg-slate-950 p-5 shadow-inner">
               {password ? (
                 <output
                   aria-label="Generated password"
-                  className="w-full break-all font-mono text-lg leading-7 text-slate-900 sm:text-xl"
+                  className="w-full break-all font-mono text-lg font-semibold leading-7 text-indigo-100 sm:text-2xl"
                 >
                   {password}
                 </output>
               ) : (
-                <p className="w-full text-center text-sm text-slate-400">Your generated password will appear here.</p>
+                <p className="w-full text-center text-sm text-slate-400">Your secure password will appear here</p>
               )}
             </div>
 
@@ -256,7 +240,7 @@ export default function PasswordGenerator() {
                     <span className="font-medium text-slate-700">Estimated strength</span>
                     <span className="font-semibold text-slate-900">{strength.label}</span>
                   </div>
-                  <div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-100">
+                  <div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-200">
                     <div className={`h-full rounded-full transition-all ${strength.color}`} style={{ width: strength.width }} />
                   </div>
                   <p className="mt-2 text-xs leading-5 text-slate-500">
@@ -268,7 +252,7 @@ export default function PasswordGenerator() {
                   <button
                     type="button"
                     onClick={copyPassword}
-                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    className="tool-primary-button"
                   >
                     {copied ? <Check aria-hidden="true" size={17} /> : <Clipboard aria-hidden="true" size={17} />}
                     {copied ? 'Copied!' : 'Copy password'}
@@ -276,7 +260,7 @@ export default function PasswordGenerator() {
                   <button
                     type="button"
                     onClick={generate}
-                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    className="tool-secondary-button"
                   >
                     <RefreshCw aria-hidden="true" size={17} />
                     Regenerate

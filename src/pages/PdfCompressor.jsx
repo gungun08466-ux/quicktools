@@ -9,7 +9,6 @@ import {
   FilePlus2,
   LoaderCircle,
   RotateCcw,
-  ShieldCheck,
   Upload,
 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
@@ -408,30 +407,15 @@ export default function PdfCompressor() {
         title="PDF Compressor - Reduce PDF File Size"
         description="Compress a PDF online in your browser. Compare file sizes, preview the result, choose a compression level, and download only when the PDF is smaller."
       />
-      <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
-        <header className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-sm font-medium text-indigo-700">
-            <ShieldCheck aria-hidden="true" size={16} />
-            Private, browser-based compression
-          </span>
-          <h1 className="mt-5 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+      <div className="mx-auto max-w-5xl tool-page-shell">
+        <header className="tool-page-heading">
+          <h1 className="tool-page-title">
             PDF Compressor
           </h1>
-          <p className="mt-3 text-base leading-7 text-slate-600 sm:text-lg">
-            Reduce a PDF file size, compare the original and result, and preview
-            the output before downloading. Your file stays in your browser.
-          </p>
         </header>
 
-        <div className="mx-auto mt-8 max-w-4xl rounded-xl border border-emerald-100 bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
-          <p className="flex items-start gap-2">
-            <ShieldCheck aria-hidden="true" size={17} className="mt-0.5 shrink-0 text-emerald-700" />
-            <span>Your PDF is processed on this device and is not uploaded to a server. A smaller output is only offered when the actual file size is reduced.</span>
-          </p>
-        </div>
-
-        <section aria-label="PDF compression" className="mx-auto mt-6 max-w-4xl space-y-5">
-          <section aria-labelledby="pdf-upload-heading" className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+        <section aria-label="PDF compression" className="mx-auto max-w-4xl space-y-5">
+          <section aria-labelledby="pdf-upload-heading" className="tool-surface p-4 sm:p-6">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div className="flex items-start gap-3">
                 <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700">
@@ -467,10 +451,8 @@ export default function PdfCompressor() {
                 if (!event.currentTarget.contains(event.relatedTarget)) setIsDragging(false)
               }}
               onDrop={handleDrop}
-              className={`mt-5 rounded-xl border-2 border-dashed p-5 text-center transition sm:p-7 ${
-                isDragging
-                  ? 'border-indigo-500 bg-indigo-50'
-                  : 'border-slate-300 bg-slate-50 hover:border-indigo-300'
+              className={`tool-dropzone mt-5 p-5 text-center sm:p-7 ${
+                isDragging ? 'border-indigo-500 bg-indigo-50 ring-4 ring-indigo-100' : ''
               } ${(isLoading || isCompressing) ? 'pointer-events-none opacity-60' : ''}`}
             >
               <input
@@ -531,7 +513,7 @@ export default function PdfCompressor() {
           {status && <StatusMessage status={status} />}
 
           {pdfFile && (
-            <section aria-labelledby="compression-settings-heading" className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+            <section aria-labelledby="compression-settings-heading" className="tool-surface-raised p-4 sm:p-6">
               <div>
                 <h2 id="compression-settings-heading" className="font-semibold text-slate-950">
                   Compression level
@@ -548,7 +530,7 @@ export default function PdfCompressor() {
                 value={compressionLevel}
                 onChange={changeCompressionLevel}
                 disabled={isLoading || isCompressing}
-                className="mt-2 min-h-11 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-100 sm:max-w-xs"
+                className="tool-field mt-2 sm:max-w-xs"
               >
                 {Object.entries(COMPRESSION_LEVELS).map(([value, level]) => (
                   <option key={value} value={value}>{level.label}</option>
@@ -561,7 +543,7 @@ export default function PdfCompressor() {
                 type="button"
                 onClick={compressPdf}
                 disabled={isLoading || isCompressing || !sourcePreviewUrl}
-                className="mt-5 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+                className="tool-primary-button mt-5 w-full sm:w-auto"
               >
                 {isCompressing
                   ? <LoaderCircle aria-hidden="true" size={17} className="animate-spin" />
@@ -572,12 +554,12 @@ export default function PdfCompressor() {
           )}
 
           {pdfFile && sourcePreviewUrl && (
-            <section aria-labelledby="preview-heading" className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+            <section aria-labelledby="preview-heading" className="tool-surface p-4 sm:p-6">
               <h2 id="preview-heading" className="font-semibold text-slate-950">
                 {result ? 'Compression preview' : 'PDF preview'}
               </h2>
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
-                <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
+                <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-slate-50 p-3 shadow-sm">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <h3 className="text-sm font-semibold text-slate-900">Original</h3>
                     <span className="text-xs text-slate-500">{formatFileSize(pdfFile.size)}</span>
@@ -589,7 +571,7 @@ export default function PdfCompressor() {
                   />
                 </div>
                 {result ? (
-                  <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
+                  <div className="rounded-2xl border border-indigo-100 bg-gradient-to-br from-white to-indigo-50/60 p-3 shadow-sm">
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <h3 className="text-sm font-semibold text-slate-900">Result preview</h3>
                       <span className="text-xs text-slate-500">{formatFileSize(result.size)}</span>
@@ -601,7 +583,7 @@ export default function PdfCompressor() {
                     />
                   </div>
                 ) : (
-                  <div className="flex min-h-48 items-center justify-center rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-center text-sm text-slate-500">
+                  <div className="flex min-h-48 items-center justify-center rounded-2xl border border-dashed border-indigo-200 bg-gradient-to-br from-white to-indigo-50/60 p-4 text-center text-sm text-slate-500">
                     The result preview will appear here after compression.
                   </div>
                 )}
@@ -610,20 +592,20 @@ export default function PdfCompressor() {
           )}
 
           {result && (
-            <section aria-labelledby="compression-results-heading" className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+            <section aria-labelledby="compression-results-heading" className="tool-surface-raised p-4 sm:p-6">
               <h2 id="compression-results-heading" className="font-semibold text-slate-950">
                 Compression results
               </h2>
               <dl className="mt-4 grid gap-3 sm:grid-cols-3">
-                <div className="rounded-xl bg-slate-50 p-4">
+                <div className="tool-stat-tile">
                   <dt className="text-sm text-slate-500">Original size</dt>
                   <dd className="mt-1 font-semibold text-slate-950">{formatFileSize(pdfFile.size)}</dd>
                 </div>
-                <div className="rounded-xl bg-slate-50 p-4">
+                <div className="tool-stat-tile">
                   <dt className="text-sm text-slate-500">Result size</dt>
                   <dd className="mt-1 font-semibold text-slate-950">{formatFileSize(result.size)}</dd>
                 </div>
-                <div className="rounded-xl bg-slate-50 p-4">
+                <div className="tool-stat-tile">
                   <dt className="text-sm text-slate-500">{result.isSmaller ? 'Size reduction' : 'Space saved'}</dt>
                   <dd className="mt-1 font-semibold text-slate-950">
                     {result.isSmaller
@@ -644,7 +626,7 @@ export default function PdfCompressor() {
                 <a
                   href={result.downloadUrl}
                   download={`${pdfFile.name.replace(/\.pdf$/i, '')}-compressed.pdf`}
-                  className="mt-5 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:w-auto"
+                  className="tool-primary-button mt-5 w-full sm:w-auto"
                 >
                   <Download aria-hidden="true" size={17} />
                   Download compressed PDF

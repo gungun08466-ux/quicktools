@@ -9,7 +9,6 @@ import {
   FilePlus2,
   LoaderCircle,
   RotateCcw,
-  ShieldCheck,
   Upload,
 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
@@ -418,30 +417,15 @@ export default function PdfToJpg() {
         title="PDF to JPG Converter"
         description="Convert PDF pages to JPG images in your browser. Preview pages, select all or choose specific pages, set JPG quality and image scale, then download images or a ZIP."
       />
-      <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
-        <header className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-sm font-medium text-indigo-700">
-            <ShieldCheck aria-hidden="true" size={16} />
-            Private, browser-based conversion
-          </span>
-          <h1 className="mt-5 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+      <div className="mx-auto max-w-5xl tool-page-shell">
+        <header className="tool-page-heading">
+          <h1 className="tool-page-title">
             PDF to JPG Converter
           </h1>
-          <p className="mt-3 text-base leading-7 text-slate-600 sm:text-lg">
-            Preview a PDF, convert every page or choose specific pages, and download
-            the JPG images individually or together as a ZIP. Processing stays in your browser.
-          </p>
         </header>
 
-        <div className="mx-auto mt-8 max-w-4xl rounded-xl border border-emerald-100 bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
-          <p className="flex items-start gap-2">
-            <ShieldCheck aria-hidden="true" size={17} className="mt-0.5 shrink-0 text-emerald-700" />
-            <span>Your PDF is read and converted on this device. It is not uploaded to a server.</span>
-          </p>
-        </div>
-
-        <section aria-label="PDF to JPG conversion" className="mx-auto mt-6 max-w-4xl space-y-5">
-          <section aria-labelledby="pdf-upload-heading" className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+        <section aria-label="PDF to JPG conversion" className="mx-auto max-w-4xl space-y-5">
+          <section aria-labelledby="pdf-upload-heading" className="tool-surface p-4 sm:p-6">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div className="flex items-start gap-3">
                 <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700">
@@ -477,10 +461,8 @@ export default function PdfToJpg() {
                 if (!event.currentTarget.contains(event.relatedTarget)) setIsDragging(false)
               }}
               onDrop={handleDrop}
-              className={`mt-5 rounded-xl border-2 border-dashed p-5 text-center transition sm:p-7 ${
-                isDragging
-                  ? 'border-indigo-500 bg-indigo-50'
-                  : 'border-slate-300 bg-slate-50 hover:border-indigo-300'
+              className={`tool-dropzone mt-5 p-5 text-center sm:p-7 ${
+                isDragging ? 'border-indigo-500 bg-indigo-50 ring-4 ring-indigo-100' : ''
               } ${isProcessing ? 'pointer-events-none opacity-60' : ''}`}
             >
               <input
@@ -542,7 +524,7 @@ export default function PdfToJpg() {
 
           {pdfFile && previewPages.length > 0 && (
             <>
-              <section aria-labelledby="page-selection-heading" className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+              <section aria-labelledby="page-selection-heading" className="tool-surface p-4 sm:p-6">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
                     <h2 id="page-selection-heading" className="font-semibold text-slate-950">
@@ -622,9 +604,9 @@ export default function PdfToJpg() {
                   {previewPages.map(({ pageNumber, previewUrl }) => (
                     <label
                       key={pageNumber}
-                      className="flex cursor-pointer flex-col overflow-hidden rounded-xl border border-slate-200 bg-slate-50 transition hover:border-indigo-200"
+                      className="flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-300 hover:shadow-md"
                     >
-                      <span className="flex h-64 items-center justify-center bg-white p-2">
+                      <span className="flex h-64 items-center justify-center bg-gradient-to-br from-slate-50 to-indigo-50/60 p-2">
                         <img
                           src={previewUrl}
                           alt={`Preview of PDF page ${pageNumber}`}
@@ -647,7 +629,7 @@ export default function PdfToJpg() {
                 </div>
               </section>
 
-              <section aria-labelledby="jpg-settings-heading" className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+              <section aria-labelledby="jpg-settings-heading" className="tool-surface p-4 sm:p-6">
                 <h2 id="jpg-settings-heading" className="font-semibold text-slate-950">
                   JPG image settings
                 </h2>
@@ -689,7 +671,7 @@ export default function PdfToJpg() {
                         setStatus(null)
                       }}
                       disabled={isProcessing}
-                      className="mt-2 min-h-11 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-100 disabled:opacity-60"
+                      className="tool-field mt-2 disabled:opacity-60"
                     >
                       <option value="1">Standard (1×)</option>
                       <option value="1.5">High (1.5×)</option>
@@ -703,7 +685,7 @@ export default function PdfToJpg() {
                   type="button"
                   onClick={convertPages}
                   disabled={isProcessing}
-                  className="mt-6 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-wait disabled:opacity-70"
+                  className="tool-primary-button mt-6 w-full disabled:cursor-wait"
                 >
                   {isConverting
                     ? <LoaderCircle aria-hidden="true" size={17} className="animate-spin" />
@@ -715,7 +697,7 @@ export default function PdfToJpg() {
           )}
 
           {outputImages.length > 0 && (
-            <section aria-labelledby="jpg-results-heading" className="rounded-2xl border border-emerald-200 bg-white p-4 shadow-sm sm:p-6">
+            <section aria-labelledby="jpg-results-heading" className="rounded-3xl border border-emerald-200 bg-gradient-to-br from-white to-emerald-50/70 p-4 shadow-lg shadow-emerald-100/70 sm:p-6">
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
                   <h2 id="jpg-results-heading" className="font-semibold text-slate-950">
@@ -749,9 +731,9 @@ export default function PdfToJpg() {
                 )}
               </div>
 
-              <ul className="mt-4 divide-y divide-slate-200">
+              <ul className="mt-4 grid gap-3 sm:grid-cols-2">
                 {outputImages.map(({ pageNumber, blob, url, name }) => (
-                  <li key={pageNumber} className="flex flex-wrap items-center justify-between gap-3 py-3">
+                  <li key={pageNumber} className="flex min-w-0 flex-wrap items-center justify-between gap-3 rounded-2xl border border-emerald-100 bg-white p-3 shadow-sm">
                     <span className="min-w-0">
                       <span className="block truncate text-sm font-medium text-slate-800">{name}</span>
                       <span className="mt-1 block text-xs text-slate-500">{formatFileSize(blob.size)}</span>

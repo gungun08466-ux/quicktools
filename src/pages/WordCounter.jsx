@@ -135,23 +135,15 @@ export default function WordCounter() {
         title="Word Counter - Count Words, Characters, and Sentences"
         description="Count words, characters, sentences, and paragraphs instantly with this free online word counter. Estimate reading and speaking time; your text stays in your browser."
       />
-      <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
-        <header className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-sm font-medium text-indigo-700">
-            <FileText aria-hidden="true" size={16} />
-            Private, browser-based text counting
-          </span>
-          <h1 className="mt-5 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+      <div className="mx-auto max-w-5xl tool-page-shell">
+        <header className="tool-page-heading">
+          <h1 className="tool-page-title">
             Word Counter
           </h1>
-          <p className="mt-3 text-base leading-7 text-slate-600 sm:text-lg">
-            Count words, characters, sentences, and paragraphs as you type.
-            Estimate reading and speaking time without sending your text anywhere.
-          </p>
         </header>
 
-        <section aria-label="Word counter" className="mx-auto mt-8 max-w-4xl">
-          <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+        <section aria-label="Word counter" className="mx-auto max-w-4xl">
+          <div className="tool-surface-raised p-4 sm:p-6">
             <label htmlFor="word-counter-text" className="block font-semibold text-slate-950">
               Enter or paste your text
             </label>
@@ -165,14 +157,14 @@ export default function WordCounter() {
               aria-describedby="word-counter-help"
               placeholder="Start typing or paste your text here…"
               spellCheck="true"
-              className="mt-4 min-h-72 w-full resize-y rounded-xl border border-slate-300 bg-slate-50 p-4 text-base leading-7 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-400 focus:bg-white focus:ring-4 focus:ring-indigo-100 sm:min-h-96"
+              className="tool-editor mt-4 min-h-64 w-full resize-y p-4 text-base leading-7 sm:min-h-80"
             />
             <div className="mt-4 flex flex-wrap gap-2">
               <button
                 type="button"
                 onClick={() => updateText('')}
                 disabled={!text}
-                className="inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:opacity-50"
+                className="tool-secondary-button disabled:cursor-not-allowed disabled:opacity-50"
               >
                 <Eraser aria-hidden="true" size={16} />
                 Clear text
@@ -181,7 +173,7 @@ export default function WordCounter() {
                 type="button"
                 onClick={copyText}
                 disabled={!text}
-                className="inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:opacity-50"
+                className="tool-secondary-button disabled:cursor-not-allowed disabled:opacity-50"
               >
                 <ClipboardCopy aria-hidden="true" size={16} />
                 Copy text
@@ -189,7 +181,7 @@ export default function WordCounter() {
               <button
                 type="button"
                 onClick={() => updateText(SAMPLE_TEXT)}
-                className="inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="tool-secondary-button"
               >
                 <FileText aria-hidden="true" size={16} />
                 Sample text
@@ -214,7 +206,7 @@ export default function WordCounter() {
             </div>
             <dl className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
               {stats.map(({ label, value }) => (
-                <div key={label} className="rounded-xl bg-slate-50 p-4">
+                <div key={label} className="tool-stat-tile">
                   <dt className="text-sm leading-5 text-slate-500">{label}</dt>
                   <dd className="mt-2 text-2xl font-bold tabular-nums text-slate-950">{value}</dd>
                 </div>

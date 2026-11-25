@@ -6,7 +6,6 @@ import {
   Download,
   QrCode,
   RotateCcw,
-  ShieldCheck,
 } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import PageMetadata from '../components/seo/PageMetadata.jsx'
@@ -191,33 +190,18 @@ export default function QrGenerator() {
         title="QR Code Generator"
         description="Create and download custom QR codes for text or URLs in your browser. Choose colors and size while your content stays on your device."
       />
-      <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
-        <header className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-sm font-medium text-indigo-700">
-            <ShieldCheck aria-hidden="true" size={16} />
-            Private, browser-based generation
-          </span>
-          <h1 className="mt-5 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+      <div className="mx-auto max-w-5xl tool-page-shell">
+        <header className="tool-page-heading">
+          <h1 className="tool-page-title">
             QR Code Generator
           </h1>
-          <p className="mt-3 text-base leading-7 text-slate-600 sm:text-lg">
-            Create a QR code from text or a URL, customize its colors and size, and
-            download it as a PNG. Everything is generated locally in your browser.
-          </p>
         </header>
-
-        <div className="mx-auto mt-8 max-w-4xl rounded-xl border border-emerald-100 bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
-          <p className="flex items-start gap-2">
-            <ShieldCheck aria-hidden="true" size={17} className="mt-0.5 shrink-0 text-emerald-700" />
-            <span>Your text and generated QR code stay on your device; nothing is uploaded.</span>
-          </p>
-        </div>
 
         <section
           aria-labelledby="qr-content-heading"
-          className="mx-auto mt-6 grid max-w-4xl gap-5 lg:grid-cols-[1.15fr_0.85fr]"
+          className="mx-auto grid max-w-4xl gap-5 lg:grid-cols-[1.15fr_0.85fr]"
         >
-          <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+          <div className="tool-surface p-4 sm:p-6">
             <div className="flex items-start justify-between gap-3">
               <div>
                 <h2 id="qr-content-heading" className="font-semibold text-slate-950">
@@ -249,7 +233,7 @@ export default function QrGenerator() {
               }}
               placeholder="https://example.com or enter any text"
               spellCheck="false"
-              className="mt-5 min-h-36 w-full resize-y rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-400 focus:bg-white focus:ring-4 focus:ring-indigo-100"
+              className="tool-field mt-5 min-h-36 resize-y p-4 leading-6"
             />
             <p className="mt-2 text-xs text-slate-500">
               {value.trim()
@@ -298,7 +282,7 @@ export default function QrGenerator() {
                 id="qr-size"
                 value={size}
                 onChange={(event) => setSize(Number(event.target.value))}
-                className="mt-2 min-h-11 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 outline-none focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100 sm:max-w-xs"
+                className="tool-field mt-2 sm:max-w-xs"
               >
                 {QR_SIZES.map((option) => (
                   <option key={option} value={option}>{option} × {option} px</option>
@@ -311,7 +295,7 @@ export default function QrGenerator() {
 
           <section
             aria-labelledby="qr-preview-heading"
-            className="flex flex-col rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6"
+            className="tool-surface-raised flex flex-col p-4 sm:p-6"
           >
             <div>
               <h2 id="qr-preview-heading" className="font-semibold text-slate-950">
@@ -321,7 +305,7 @@ export default function QrGenerator() {
             </div>
 
             <div
-              className="mt-4 flex min-h-64 flex-1 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 p-4 sm:min-h-80"
+              className="mt-4 flex min-h-64 flex-1 items-center justify-center rounded-2xl border border-indigo-100 bg-gradient-to-br from-white via-indigo-50/60 to-violet-50/70 p-4 shadow-inner sm:min-h-80"
               aria-live="polite"
               aria-busy={isGenerating}
             >
@@ -355,7 +339,7 @@ export default function QrGenerator() {
                 type="button"
                 onClick={downloadPng}
                 disabled={!qrDataUrl || isGenerating}
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:opacity-50"
+                className="tool-primary-button disabled:opacity-50"
               >
                 <Download aria-hidden="true" size={17} />
                 Download PNG
@@ -364,7 +348,7 @@ export default function QrGenerator() {
                 type="button"
                 onClick={copyPng}
                 disabled={!qrDataUrl || isGenerating}
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:opacity-50"
+                className="tool-secondary-button disabled:opacity-50"
               >
                 <Clipboard aria-hidden="true" size={17} />
                 Copy image

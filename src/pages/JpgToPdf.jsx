@@ -9,7 +9,6 @@ import {
   FilePlus2,
   LoaderCircle,
   RotateCcw,
-  ShieldCheck,
   Trash2,
   Upload,
 } from 'lucide-react'
@@ -309,29 +308,14 @@ export default function JpgToPdf() {
         title="JPG to PDF Converter"
         description="Convert JPG images to PDF in your browser. Upload multiple JPG or JPEG files, arrange their order, choose page size and orientation, and download one PDF."
       />
-      <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
-        <header className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-sm font-medium text-indigo-700">
-            <ShieldCheck aria-hidden="true" size={16} />
-            Private, browser-based conversion
-          </span>
-          <h1 className="mt-5 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+      <div className="mx-auto max-w-5xl tool-page-shell">
+        <header className="tool-page-heading">
+          <h1 className="tool-page-title">
             JPG to PDF Converter
           </h1>
-          <p className="mt-3 text-base leading-7 text-slate-600 sm:text-lg">
-            Convert JPG images to one PDF, set the page layout, and arrange the pages
-            before downloading. Your images stay on your device.
-          </p>
         </header>
 
-        <div className="mx-auto mt-8 max-w-4xl rounded-xl border border-emerald-100 bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
-          <p className="flex items-start gap-2">
-            <ShieldCheck aria-hidden="true" size={17} className="mt-0.5 shrink-0 text-emerald-700" />
-            <span>Conversion runs in your browser. Your images are not uploaded to a server.</span>
-          </p>
-        </div>
-
-        <section aria-label="JPG to PDF conversion" className="mx-auto mt-6 max-w-4xl space-y-5">
+        <section aria-label="JPG to PDF conversion" className="mx-auto max-w-4xl space-y-5">
           <label
             htmlFor="jpg-files"
             onDragOver={(event) => {
@@ -340,10 +324,8 @@ export default function JpgToPdf() {
             }}
             onDragLeave={() => setIsDragging(false)}
             onDrop={handleDrop}
-            className={`block cursor-pointer rounded-2xl border-2 border-dashed p-6 text-center transition sm:p-8 ${
-              isDragging
-                ? 'border-indigo-500 bg-indigo-50'
-                : 'border-slate-300 bg-white hover:border-indigo-300 hover:bg-slate-50'
+            className={`tool-dropzone block cursor-pointer p-6 text-center sm:p-9 ${
+              isDragging ? 'border-indigo-500 bg-indigo-50 ring-4 ring-indigo-100' : ''
             } ${isConverting ? 'pointer-events-none opacity-60' : ''}`}
           >
             <input
@@ -356,10 +338,10 @@ export default function JpgToPdf() {
               disabled={isConverting}
               className="sr-only"
             />
-            <span className="mx-auto flex size-12 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700">
+            <span className="mx-auto flex size-16 items-center justify-center rounded-2xl bg-indigo-600 text-white shadow-lg shadow-indigo-200">
               <Upload aria-hidden="true" size={22} />
             </span>
-            <span className="mt-3 block font-semibold text-slate-950">
+            <span className="mt-4 block text-xl font-bold tracking-tight text-slate-950">
               Drag and drop JPG images here
             </span>
             <span className="mt-1 block text-sm text-slate-600">
@@ -369,7 +351,7 @@ export default function JpgToPdf() {
           </label>
 
           {images.length > 0 && (
-            <section aria-labelledby="uploaded-images-heading" className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+            <section aria-labelledby="uploaded-images-heading" className="tool-surface-raised p-4 sm:p-6">
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
                   <h2 id="uploaded-images-heading" className="font-semibold text-slate-950">
@@ -392,8 +374,8 @@ export default function JpgToPdf() {
 
               <ol className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {images.map((image, index) => (
-                  <li key={image.id} className="min-w-0 overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
-                    <div className="flex h-40 items-center justify-center bg-white p-2">
+                  <li key={image.id} className="min-w-0 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+                    <div className="flex h-40 items-center justify-center bg-gradient-to-br from-slate-50 to-indigo-50/60 p-2">
                       <img
                         src={image.previewUrl}
                         alt={`Preview of ${image.file.name}`}
@@ -445,7 +427,7 @@ export default function JpgToPdf() {
             </section>
           )}
 
-          <section aria-labelledby="pdf-settings-heading" className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+          <section aria-labelledby="pdf-settings-heading" className="tool-surface p-4 sm:p-6">
             <div className="flex items-start gap-3">
               <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700">
                 <FileImage aria-hidden="true" size={20} />
@@ -474,7 +456,7 @@ export default function JpgToPdf() {
                     setDownloadMessage('')
                   }}
                   disabled={isConverting}
-                  className="mt-2 min-h-11 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-100 disabled:opacity-60"
+                  className="tool-field mt-2 disabled:opacity-60"
                 >
                   <option value="A4">A4</option>
                   <option value="Letter">Letter</option>
@@ -496,7 +478,7 @@ export default function JpgToPdf() {
                     setDownloadMessage('')
                   }}
                   disabled={isConverting || pageSize === 'Fit to Image'}
-                  className="mt-2 min-h-11 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-100 disabled:opacity-60"
+                  className="tool-field mt-2 disabled:opacity-60"
                 >
                   <option value="portrait">Portrait</option>
                   <option value="landscape">Landscape</option>
@@ -511,7 +493,7 @@ export default function JpgToPdf() {
               type="button"
               onClick={convertToPdf}
               disabled={isConverting}
-              className="mt-6 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-wait disabled:opacity-70"
+              className="tool-primary-button mt-6 w-full disabled:cursor-wait"
             >
               {isConverting
                 ? <LoaderCircle aria-hidden="true" size={17} className="animate-spin" />
