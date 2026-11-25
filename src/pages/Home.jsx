@@ -2,6 +2,7 @@ import {
   ArrowDown,
   ArrowRight,
   BadgeCheck,
+  CalendarDays,
   FileImage,
   FileInput,
   FileJson,
@@ -103,6 +104,14 @@ const tools = [
     category: 'Text',
     accent: 'bg-teal-50 text-teal-700 ring-teal-100',
   },
+  {
+    title: 'Age Calculator',
+    description: 'Calculate your exact age and find the date and weekday of your next birthday.',
+    to: '/age-calculator',
+    icon: CalendarDays,
+    category: 'Date & Time',
+    accent: 'bg-blue-50 text-blue-700 ring-blue-100',
+  },
 ]
 
 const benefits = [
@@ -118,7 +127,7 @@ const benefits = [
   },
   {
     title: 'Processed in your browser',
-    description: 'Images, PDFs, text, QR content, and generated passwords are processed locally in your browser.',
+    description: 'Images, PDFs, text, QR content, generated passwords, and age calculations run locally in your browser.',
     icon: ShieldCheck,
   },
   {
@@ -176,7 +185,7 @@ export default function Home() {
     <>
       <PageMetadata
         title="Free Online Tools to Make Your Work Easier"
-        description="Use QuickTools' free online tools to compress and resize images, compress PDFs, count words, format JSON, merge PDFs, convert JPGs to PDF or PDF pages to JPG, create QR codes, and generate passwords—quickly, with no account required."
+        description="Use QuickTools' free online tools to compress and resize images, compress PDFs, calculate age, count words, format JSON, merge PDFs, convert JPGs to PDF or PDF pages to JPG, create QR codes, and generate passwords—quickly, with no account required."
       />
 
       <section className="relative isolate overflow-hidden border-b border-indigo-100/80 bg-gradient-to-br from-slate-50 via-white to-indigo-50/80">
@@ -195,7 +204,7 @@ export default function Home() {
               <span className="flex size-5 items-center justify-center rounded-full bg-indigo-100 text-indigo-700">
                 <Sparkles aria-hidden="true" size={12} />
               </span>
-              TEN FOCUSED ONLINE TOOLS
+              ELEVEN FOCUSED ONLINE TOOLS
             </span>
             <h1 className="mt-5 text-[2.4rem] font-bold leading-[1.06] tracking-[-0.045em] text-slate-950 sm:text-5xl lg:mt-6 lg:text-[3.65rem]">
               <span className="block">Free Online Tools</span>
@@ -306,7 +315,7 @@ export default function Home() {
                   </div>
                 </div>
                 <span className="rounded-full border border-indigo-100 bg-indigo-50 px-2.5 py-1 text-xs font-semibold text-indigo-700">
-                  10 tools
+                  11 tools
                 </span>
               </div>
               <div className="mt-3 grid grid-cols-2 gap-2.5">

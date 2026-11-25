@@ -18,6 +18,7 @@ const PdfToJpg = lazy(() => import('./pages/PdfToJpg.jsx'))
 const PdfCompressor = lazy(() => import('./pages/PdfCompressor.jsx'))
 const WordCounter = lazy(() => import('./pages/WordCounter.jsx'))
 const ImageResizer = lazy(() => import('./pages/ImageResizer.jsx'))
+const AgeCalculator = lazy(() => import('./pages/AgeCalculator.jsx'))
 
 export default function App() {
   return (
@@ -105,6 +106,14 @@ export default function App() {
             element={
               <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading Image Resizer…</p>}>
                 <ImageResizer />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/age-calculator"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading Age Calculator…</p>}>
+                <AgeCalculator />
               </Suspense>
             }
           />

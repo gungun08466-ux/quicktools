@@ -15,6 +15,24 @@ body {
   margin: 0;
 }
 
+@keyframes age-result-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .age-result-enter {
+    animation: age-result-in 280ms ease-out both;
+  }
+}
+
 button,
 a {
   -webkit-tap-highlight-color: transparent;

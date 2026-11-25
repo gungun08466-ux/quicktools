@@ -53,6 +53,11 @@ const tools = [
     description: 'Count words, characters, sentences, and paragraphs instantly in your browser.',
     to: '/word-counter',
   },
+  {
+    title: 'Age Calculator',
+    description: 'Calculate exact age, total days, and the next birthday date locally in your browser.',
+    to: '/age-calculator',
+  },
 ]
 
 export default function AboutPage() {
@@ -60,7 +65,7 @@ export default function AboutPage() {
     <>
       <PageMetadata
         title="About"
-        description="QuickTools provides focused browser-based utilities for image resizing and compression, PDF compression, word counting, JPG-to-PDF and PDF-to-JPG conversion, JSON, PDFs, QR codes, and passwords, with no account required."
+        description="QuickTools provides focused browser-based utilities for image resizing and compression, PDF compression, age calculation, word counting, JPG-to-PDF and PDF-to-JPG conversion, JSON, PDFs, QR codes, and passwords, with no account required."
       />
       <article className="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-14">
         <header>
@@ -115,8 +120,8 @@ export default function AboutPage() {
             <p className="mt-2 leading-7 text-slate-600">
               Image compression and resizing, PDF compression, merging, and PDF/image
               conversion process files in your browser. Word counting, JSON
-              formatting, QR code generation, and
-              password generation also run in the browser. Generated passwords
+              formatting, QR code generation, password generation, and age
+              calculation also run in the browser. Generated passwords
               are not stored by the tool. The website itself is delivered over
               the internet, and hosting or browser services may process
               connection information. See our{' '}
