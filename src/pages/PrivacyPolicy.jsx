@@ -27,11 +27,13 @@ export default function PrivacyPolicy() {
               Files and content are processed in your browser
             </h2>
             <p className="mt-2">
-              The Image Compressor and PDF Merger process selected files on your
-              device. The JSON Formatter and QR Code Generator process the text
-              you enter in your browser. The QuickTools application does not send
-              this content to an application backend or file-processing service.
-              Generated results are made available in your browser for download.
+              The Image Compressor, Image Resizer, PDF Merger, PDF Compressor,
+              and JPG/PDF converters process selected files on your device. The JSON
+              Formatter, Word Counter, and QR Code Generator process the text
+              you enter in your browser, and passwords are generated locally. The QuickTools
+              application does not send this content to an application backend
+              or file-processing service. Generated results are made available
+              in your browser for download, and generated passwords are not stored.
             </p>
           </section>
 

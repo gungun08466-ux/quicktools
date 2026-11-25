@@ -12,6 +12,12 @@ import PrivacyPolicy from './pages/PrivacyPolicy.jsx'
 const ImageCompressor = lazy(() => import('./pages/ImageCompressor.jsx'))
 const PdfMerger = lazy(() => import('./pages/PdfMerger.jsx'))
 const QrGenerator = lazy(() => import('./pages/QrGenerator.jsx'))
+const PasswordGenerator = lazy(() => import('./pages/PasswordGenerator.jsx'))
+const JpgToPdf = lazy(() => import('./pages/JpgToPdf.jsx'))
+const PdfToJpg = lazy(() => import('./pages/PdfToJpg.jsx'))
+const PdfCompressor = lazy(() => import('./pages/PdfCompressor.jsx'))
+const WordCounter = lazy(() => import('./pages/WordCounter.jsx'))
+const ImageResizer = lazy(() => import('./pages/ImageResizer.jsx'))
 
 export default function App() {
   return (
@@ -51,6 +57,54 @@ export default function App() {
             element={
               <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading QR Code Generator…</p>}>
                 <QrGenerator />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/password-generator"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading Password Generator…</p>}>
+                <PasswordGenerator />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/jpg-to-pdf"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading JPG to PDF Converter…</p>}>
+                <JpgToPdf />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/pdf-to-jpg"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading PDF to JPG Converter…</p>}>
+                <PdfToJpg />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/pdf-compressor"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading PDF Compressor…</p>}>
+                <PdfCompressor />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/word-counter"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading Word Counter…</p>}>
+                <WordCounter />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/image-resizer"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading Image Resizer…</p>}>
+                <ImageResizer />
               </Suspense>
             }
           />

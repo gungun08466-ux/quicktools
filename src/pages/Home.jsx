@@ -2,10 +2,13 @@ import {
   ArrowDown,
   ArrowRight,
   BadgeCheck,
+  FileImage,
   FileInput,
   FileJson,
+  FileText,
   Files,
   Image,
+  KeyRound,
   MousePointer2,
   QrCode,
   Search,
@@ -23,6 +26,13 @@ const tools = [
     title: 'Image Compressor',
     description: 'Reduce an image’s file size before sharing it or using it on a website.',
     to: '/image-compressor',
+    icon: Image,
+    category: 'Images',
+  },
+  {
+    title: 'Image Resizer',
+    description: 'Resize JPG, PNG, or WebP images to custom dimensions in your browser.',
+    to: '/image-resizer',
     icon: Image,
     category: 'Images',
   },
@@ -47,6 +57,41 @@ const tools = [
     icon: QrCode,
     category: 'Generator',
   },
+  {
+    title: 'Password Generator',
+    description: 'Create a strong random password with the character options you choose.',
+    to: '/password-generator',
+    icon: KeyRound,
+    category: 'Security',
+  },
+  {
+    title: 'JPG to PDF Converter',
+    description: 'Arrange JPG images and combine them into a single downloadable PDF.',
+    to: '/jpg-to-pdf',
+    icon: FileImage,
+    category: 'PDF',
+  },
+  {
+    title: 'PDF to JPG Converter',
+    description: 'Preview PDF pages and convert all or selected pages into JPG images.',
+    to: '/pdf-to-jpg',
+    icon: FileImage,
+    category: 'PDF',
+  },
+  {
+    title: 'PDF Compressor',
+    description: 'Reduce PDF file size in your browser and compare the result before downloading.',
+    to: '/pdf-compressor',
+    icon: Files,
+    category: 'PDF',
+  },
+  {
+    title: 'Word Counter',
+    description: 'Count words, characters, sentences, and paragraphs as you type.',
+    to: '/word-counter',
+    icon: FileText,
+    category: 'Text',
+  },
 ]
 
 const benefits = [
@@ -62,7 +107,7 @@ const benefits = [
   },
   {
     title: 'Processed in your browser',
-    description: 'Image and PDF files, along with JSON and QR content, are processed locally in your browser.',
+    description: 'Images, PDFs, text, QR content, and generated passwords are processed locally in your browser.',
     icon: ShieldCheck,
   },
   {
@@ -120,7 +165,7 @@ export default function Home() {
     <>
       <PageMetadata
         title="Free Online Tools to Make Your Work Easier"
-        description="Use QuickTools' free online tools to compress images, format JSON, merge PDFs, and create QR codes—quickly, with no account required."
+        description="Use QuickTools' free online tools to compress and resize images, compress PDFs, count words, format JSON, merge PDFs, convert JPGs to PDF or PDF pages to JPG, create QR codes, and generate passwords—quickly, with no account required."
       />
 
       <section className="border-b border-slate-200 bg-white">
@@ -132,7 +177,7 @@ export default function Home() {
           <div className="max-w-2xl">
             <span className="inline-flex items-center gap-2 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-sm font-medium text-indigo-700">
               <MousePointer2 aria-hidden="true" size={15} />
-              Four focused online tools
+              Ten focused online tools
             </span>
             <h1 className="mt-6 text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl lg:leading-[1.08]">
               Free Online Tools to Make Your Work Easier

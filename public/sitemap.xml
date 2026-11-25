@@ -2,9 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://quicktools-one-delta.vercel.app/</loc></url>
   <url><loc>https://quicktools-one-delta.vercel.app/image-compressor</loc></url>
+  <url><loc>https://quicktools-one-delta.vercel.app/image-resizer</loc></url>
   <url><loc>https://quicktools-one-delta.vercel.app/json-formatter</loc></url>
   <url><loc>https://quicktools-one-delta.vercel.app/pdf-merger</loc></url>
+  <url><loc>https://quicktools-one-delta.vercel.app/jpg-to-pdf</loc></url>
+  <url><loc>https://quicktools-one-delta.vercel.app/pdf-to-jpg</loc></url>
+  <url><loc>https://quicktools-one-delta.vercel.app/pdf-compressor</loc></url>
+  <url><loc>https://quicktools-one-delta.vercel.app/word-counter</loc></url>
   <url><loc>https://quicktools-one-delta.vercel.app/qr-generator</loc></url>
+  <url><loc>https://quicktools-one-delta.vercel.app/password-generator</loc></url>
   <url><loc>https://quicktools-one-delta.vercel.app/about</loc></url>
   <url><loc>https://quicktools-one-delta.vercel.app/contact</loc></url>
   <url><loc>https://quicktools-one-delta.vercel.app/privacy</loc></url>

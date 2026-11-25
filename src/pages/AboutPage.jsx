@@ -9,6 +9,11 @@ const tools = [
     to: '/image-compressor',
   },
   {
+    title: 'Image Resizer',
+    description: 'Resize JPG, PNG, or WebP images to custom dimensions in your browser.',
+    to: '/image-resizer',
+  },
+  {
     title: 'JSON Formatter',
     description: 'Format, minify, validate, and copy JSON text.',
     to: '/json-formatter',
@@ -23,6 +28,31 @@ const tools = [
     description: 'Create a downloadable QR code from text or a URL.',
     to: '/qr-generator',
   },
+  {
+    title: 'Password Generator',
+    description: 'Create a random password with customizable length and character types.',
+    to: '/password-generator',
+  },
+  {
+    title: 'JPG to PDF Converter',
+    description: 'Combine JPG images into one PDF document in your browser.',
+    to: '/jpg-to-pdf',
+  },
+  {
+    title: 'PDF to JPG Converter',
+    description: 'Convert all or selected PDF pages into downloadable JPG images.',
+    to: '/pdf-to-jpg',
+  },
+  {
+    title: 'PDF Compressor',
+    description: 'Reduce PDF file size locally and review the result before downloading.',
+    to: '/pdf-compressor',
+  },
+  {
+    title: 'Word Counter',
+    description: 'Count words, characters, sentences, and paragraphs instantly in your browser.',
+    to: '/word-counter',
+  },
 ]
 
 export default function AboutPage() {
@@ -30,7 +60,7 @@ export default function AboutPage() {
     <>
       <PageMetadata
         title="About"
-        description="QuickTools provides focused browser-based utilities for images, JSON, PDFs, and QR codes, with no account required."
+        description="QuickTools provides focused browser-based utilities for image resizing and compression, PDF compression, word counting, JPG-to-PDF and PDF-to-JPG conversion, JSON, PDFs, QR codes, and passwords, with no account required."
       />
       <article className="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-14">
         <header>
@@ -83,9 +113,11 @@ export default function AboutPage() {
           <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
             <h2 className="text-xl font-semibold text-slate-950">Privacy and Ease of Use</h2>
             <p className="mt-2 leading-7 text-slate-600">
-              Image compression and PDF merging process files in your browser.
-              JSON formatting and QR code generation also run in the browser
-              using the text you provide. The website itself is delivered over
+              Image compression and resizing, PDF compression, merging, and PDF/image
+              conversion process files in your browser. Word counting, JSON
+              formatting, QR code generation, and
+              password generation also run in the browser. Generated passwords
+              are not stored by the tool. The website itself is delivered over
               the internet, and hosting or browser services may process
               connection information. See our{' '}
               <Link className="font-medium text-indigo-700 underline" to="/privacy">
