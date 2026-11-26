@@ -3,13 +3,27 @@
   <url><loc>https://quicktools-one-delta.vercel.app/</loc></url>
   <url><loc>https://quicktools-one-delta.vercel.app/image-compressor</loc></url>
   <url><loc>https://quicktools-one-delta.vercel.app/image-resizer</loc></url>
+  <url><loc>https://quicktools-one-delta.vercel.app/image-cropper</loc></url>
+  <url><loc>https://quicktools-one-delta.vercel.app/heic-to-jpg</loc></url>
+  <url><loc>https://quicktools-one-delta.vercel.app/png-to-jpg</loc></url>
+  <url><loc>https://quicktools-one-delta.vercel.app/jpg-to-png</loc></url>
   <url><loc>https://quicktools-one-delta.vercel.app/json-formatter</loc></url>
+  <url><loc>https://quicktools-one-delta.vercel.app/json-to-csv</loc></url>
+  <url><loc>https://quicktools-one-delta.vercel.app/csv-to-json</loc></url>
   <url><loc>https://quicktools-one-delta.vercel.app/pdf-merger</loc></url>
+  <url><loc>https://quicktools-one-delta.vercel.app/pdf-splitter</loc></url>
+  <url><loc>https://quicktools-one-delta.vercel.app/pdf-rotator</loc></url>
   <url><loc>https://quicktools-one-delta.vercel.app/jpg-to-pdf</loc></url>
   <url><loc>https://quicktools-one-delta.vercel.app/pdf-to-jpg</loc></url>
   <url><loc>https://quicktools-one-delta.vercel.app/pdf-compressor</loc></url>
   <url><loc>https://quicktools-one-delta.vercel.app/word-counter</loc></url>
+  <url><loc>https://quicktools-one-delta.vercel.app/character-counter</loc></url>
+  <url><loc>https://quicktools-one-delta.vercel.app/text-case-converter</loc></url>
+  <url><loc>https://quicktools-one-delta.vercel.app/url-encoder-decoder</loc></url>
+  <url><loc>https://quicktools-one-delta.vercel.app/html-encoder-decoder</loc></url>
   <url><loc>https://quicktools-one-delta.vercel.app/age-calculator</loc></url>
+  <url><loc>https://quicktools-one-delta.vercel.app/percentage-calculator</loc></url>
+  <url><loc>https://quicktools-one-delta.vercel.app/unit-converter</loc></url>
   <url><loc>https://quicktools-one-delta.vercel.app/qr-generator</loc></url>
   <url><loc>https://quicktools-one-delta.vercel.app/password-generator</loc></url>
   <url><loc>https://quicktools-one-delta.vercel.app/about</loc></url>

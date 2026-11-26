@@ -1,8 +1,14 @@
 import {
   ArrowDown,
   ArrowRight,
+  ArrowLeftRight,
   BadgeCheck,
   CalendarDays,
+  Calculator,
+  Type,
+  Link2,
+  Code2,
+  Crop,
   FileImage,
   FileInput,
   FileJson,
@@ -12,6 +18,8 @@ import {
   KeyRound,
   MousePointer2,
   QrCode,
+  RotateCw,
+  Scissors,
   Search,
   ShieldCheck,
   Sparkles,
@@ -41,6 +49,38 @@ const tools = [
     accent: 'bg-violet-50 text-violet-700 ring-violet-100',
   },
   {
+    title: 'Image Cropper',
+    description: 'Crop, rotate, and flip JPG, PNG, or WebP images to a preset or custom size.',
+    to: '/image-cropper',
+    icon: Crop,
+    category: 'Images',
+    accent: 'bg-indigo-50 text-indigo-700 ring-indigo-100',
+  },
+  {
+    title: 'HEIC to JPG Converter',
+    description: 'Convert HEIC and HEIF photos to JPG locally, then download images individually or as a ZIP.',
+    to: '/heic-to-jpg',
+    icon: FileImage,
+    category: 'Images',
+    accent: 'bg-teal-50 text-teal-700 ring-teal-100',
+  },
+  {
+    title: 'PNG to JPG Converter',
+    description: 'Convert PNG images to JPG with adjustable quality and a background color for transparency.',
+    to: '/png-to-jpg',
+    icon: FileImage,
+    category: 'Images',
+    accent: 'bg-orange-50 text-orange-700 ring-orange-100',
+  },
+  {
+    title: 'JPG to PNG Converter',
+    description: 'Convert JPG and JPEG images to PNG while preserving their original dimensions.',
+    to: '/jpg-to-png',
+    icon: FileImage,
+    category: 'Images',
+    accent: 'bg-emerald-50 text-emerald-700 ring-emerald-100',
+  },
+  {
     title: 'JSON Formatter',
     description: 'Format and validate JSON when working with API responses or configuration data.',
     to: '/json-formatter',
@@ -49,12 +89,44 @@ const tools = [
     accent: 'bg-amber-50 text-amber-700 ring-amber-100',
   },
   {
+    title: 'JSON to CSV Converter',
+    description: 'Convert JSON arrays into CSV with flattened nested fields and correctly escaped values.',
+    to: '/json-to-csv',
+    icon: FileJson,
+    category: 'Developer',
+    accent: 'bg-emerald-50 text-emerald-700 ring-emerald-100',
+  },
+  {
+    title: 'CSV to JSON Converter',
+    description: 'Convert CSV rows into formatted JSON with configurable delimiters and quoted-field support.',
+    to: '/csv-to-json',
+    icon: FileJson,
+    category: 'Developer',
+    accent: 'bg-cyan-50 text-cyan-700 ring-cyan-100',
+  },
+  {
     title: 'PDF Merger',
     description: 'Combine multiple PDF documents, such as reports, into one file.',
     to: '/pdf-merger',
     icon: Files,
     category: 'PDF',
     accent: 'bg-rose-50 text-rose-700 ring-rose-100',
+  },
+  {
+    title: 'PDF Splitter',
+    description: 'Extract selected pages or page ranges into a new PDF document.',
+    to: '/pdf-splitter',
+    icon: Scissors,
+    category: 'PDF',
+    accent: 'bg-violet-50 text-violet-700 ring-violet-100',
+  },
+  {
+    title: 'PDF Rotator',
+    description: 'Rotate individual or selected PDF pages and preview the changes in your browser.',
+    to: '/pdf-rotator',
+    icon: RotateCw,
+    category: 'PDF',
+    accent: 'bg-indigo-50 text-indigo-700 ring-indigo-100',
   },
   {
     title: 'QR Code Generator',
@@ -105,12 +177,60 @@ const tools = [
     accent: 'bg-teal-50 text-teal-700 ring-teal-100',
   },
   {
+    title: 'Character Counter',
+    description: 'Count characters with or without spaces, plus words, sentences, paragraphs, and lines.',
+    to: '/character-counter',
+    icon: FileText,
+    category: 'Text',
+    accent: 'bg-indigo-50 text-indigo-700 ring-indigo-100',
+  },
+  {
+    title: 'Text Case Converter',
+    description: 'Convert text between 12 formats, including title case, sentence case, camelCase, and snake_case.',
+    to: '/text-case-converter',
+    icon: Type,
+    category: 'Text',
+    accent: 'bg-violet-50 text-violet-700 ring-violet-100',
+  },
+  {
+    title: 'URL Encoder & Decoder',
+    description: 'Encode or decode URLs, query strings, and special characters locally in your browser.',
+    to: '/url-encoder-decoder',
+    icon: Link2,
+    category: 'Developer',
+    accent: 'bg-cyan-50 text-cyan-700 ring-cyan-100',
+  },
+  {
+    title: 'HTML Encoder & Decoder',
+    description: 'Escape HTML special characters and decode entities and numeric character references.',
+    to: '/html-encoder-decoder',
+    icon: Code2,
+    category: 'Developer',
+    accent: 'bg-indigo-50 text-indigo-700 ring-indigo-100',
+  },
+  {
     title: 'Age Calculator',
     description: 'Calculate your exact age and find the date and weekday of your next birthday.',
     to: '/age-calculator',
     icon: CalendarDays,
     category: 'Date & Time',
     accent: 'bg-blue-50 text-blue-700 ring-blue-100',
+  },
+  {
+    title: 'Percentage Calculator',
+    description: 'Find percentages, compare values, calculate change, and adjust numbers.',
+    to: '/percentage-calculator',
+    icon: Calculator,
+    category: 'Math',
+    accent: 'bg-amber-50 text-amber-700 ring-amber-100',
+  },
+  {
+    title: 'Unit Converter',
+    description: 'Convert length, weight, temperature, area, volume, time, speed, and data.',
+    to: '/unit-converter',
+    icon: ArrowLeftRight,
+    category: 'Converter',
+    accent: 'bg-cyan-50 text-cyan-700 ring-cyan-100',
   },
 ]
 
@@ -127,7 +247,7 @@ const benefits = [
   },
   {
     title: 'Processed in your browser',
-    description: 'Images, PDFs, text, QR content, generated passwords, and age calculations run locally in your browser.',
+    description: 'Images, PDFs, text, QR content, generated passwords, and percentage and age calculations run locally in your browser.',
     icon: ShieldCheck,
   },
   {
@@ -204,7 +324,7 @@ export default function Home() {
               <span className="flex size-5 items-center justify-center rounded-full bg-indigo-100 text-indigo-700">
                 <Sparkles aria-hidden="true" size={12} />
               </span>
-              ELEVEN FOCUSED ONLINE TOOLS
+              {tools.length} FOCUSED ONLINE TOOLS
             </span>
             <h1 className="mt-5 text-[2.4rem] font-bold leading-[1.06] tracking-[-0.045em] text-slate-950 sm:text-5xl lg:mt-6 lg:text-[3.65rem]">
               <span className="block">Free Online Tools</span>
@@ -315,7 +435,7 @@ export default function Home() {
                   </div>
                 </div>
                 <span className="rounded-full border border-indigo-100 bg-indigo-50 px-2.5 py-1 text-xs font-semibold text-indigo-700">
-                  11 tools
+                  {tools.length} tools
                 </span>
               </div>
               <div className="mt-3 grid grid-cols-2 gap-2.5">

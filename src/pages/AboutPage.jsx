@@ -14,14 +14,54 @@ const tools = [
     to: '/image-resizer',
   },
   {
+    title: 'Image Cropper',
+    description: 'Crop, rotate, and flip JPG, PNG, or WebP images to a preset or custom size.',
+    to: '/image-cropper',
+  },
+  {
+    title: 'HEIC to JPG Converter',
+    description: 'Convert HEIC and HEIF images to JPG in your browser and download them individually or as a ZIP.',
+    to: '/heic-to-jpg',
+  },
+  {
+    title: 'PNG to JPG Converter',
+    description: 'Convert PNG images to JPG and choose how transparent areas are filled.',
+    to: '/png-to-jpg',
+  },
+  {
+    title: 'JPG to PNG Converter',
+    description: 'Convert JPG and JPEG images to PNG without changing their pixel dimensions.',
+    to: '/jpg-to-png',
+  },
+  {
     title: 'JSON Formatter',
     description: 'Format, minify, validate, and copy JSON text.',
     to: '/json-formatter',
   },
   {
+    title: 'JSON to CSV Converter',
+    description: 'Convert arrays of JSON objects into CSV with flattened nested fields.',
+    to: '/json-to-csv',
+  },
+  {
+    title: 'CSV to JSON Converter',
+    description: 'Convert CSV rows to formatted JSON with support for delimiters and quoted fields.',
+    to: '/csv-to-json',
+  },
+  {
     title: 'PDF Merger',
     description: 'Combine multiple PDF files into one document.',
     to: '/pdf-merger',
+  },
+  {
+    title: 'PDF Splitter',
+    description: 'Extract selected pages or page ranges into a new PDF.',
+    to: '/pdf-splitter',
+  },
+  {
+    title: 'PDF Rotator',
+    description: 'Rotate individual or selected PDF pages locally and preview the results.',
+    to: '/pdf-rotator',
   },
   {
     title: 'QR Code Generator',
@@ -54,9 +94,39 @@ const tools = [
     to: '/word-counter',
   },
   {
+    title: 'Character Counter',
+    description: 'Count characters with and without spaces, words, sentences, paragraphs, and lines.',
+    to: '/character-counter',
+  },
+  {
+    title: 'Text Case Converter',
+    description: 'Convert text to uppercase, title case, camelCase, snake_case, and more.',
+    to: '/text-case-converter',
+  },
+  {
+    title: 'URL Encoder & Decoder',
+    description: 'Encode or decode URL text, query strings, Unicode, and special characters in your browser.',
+    to: '/url-encoder-decoder',
+  },
+  {
+    title: 'HTML Encoder & Decoder',
+    description: 'Encode HTML special characters and decode named entities or numeric character references.',
+    to: '/html-encoder-decoder',
+  },
+  {
     title: 'Age Calculator',
     description: 'Calculate exact age, total days, and the next birthday date locally in your browser.',
     to: '/age-calculator',
+  },
+  {
+    title: 'Percentage Calculator',
+    description: 'Calculate percentages, compare values, and find percentage changes.',
+    to: '/percentage-calculator',
+  },
+  {
+    title: 'Unit Converter',
+    description: 'Convert length, weight, temperature, area, volume, time, speed, and data units.',
+    to: '/unit-converter',
   },
 ]
 
@@ -65,7 +135,7 @@ export default function AboutPage() {
     <>
       <PageMetadata
         title="About"
-        description="QuickTools provides focused browser-based utilities for image resizing and compression, PDF compression, age calculation, word counting, JPG-to-PDF and PDF-to-JPG conversion, JSON, PDFs, QR codes, and passwords, with no account required."
+        description="QuickTools provides browser-based utilities for image cropping, resizing and compression, HEIC-to-JPG conversion, PDF rotation, splitting, merging and compression, text case conversion and counting, unit and percentage conversions, age calculations, PDF conversion, JSON formatting and CSV conversion, QR codes, and passwords."
       />
       <article className="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-14">
         <header>
@@ -118,10 +188,12 @@ export default function AboutPage() {
           <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
             <h2 className="text-xl font-semibold text-slate-950">Privacy and Ease of Use</h2>
             <p className="mt-2 leading-7 text-slate-600">
-              Image compression and resizing, PDF compression, merging, and PDF/image
-              conversion process files in your browser. Word counting, JSON
-              formatting, QR code generation, password generation, and age
-              calculation also run in the browser. Generated passwords
+              Image cropping, compression and resizing, HEIC-to-JPG conversion, PDF rotation, splitting, compression,
+              merging, and PDF/image conversion process files in your browser. Text case conversion, word counting, JSON
+              formatting, JSON-to-CSV and CSV-to-JSON conversion, URL and HTML encoding and
+              decoding, QR code generation, password generation, percentage and age
+              calculations and unit conversions also run in the browser. Character counting and word counting
+              work locally as you type. Generated passwords
               are not stored by the tool. The website itself is delivered over
               the internet, and hosting or browser services may process
               connection information. See our{' '}

@@ -11,14 +11,28 @@ import PrivacyPolicy from './pages/PrivacyPolicy.jsx'
 
 const ImageCompressor = lazy(() => import('./pages/ImageCompressor.jsx'))
 const PdfMerger = lazy(() => import('./pages/PdfMerger.jsx'))
+const PdfSplitter = lazy(() => import('./pages/PdfSplitter.jsx'))
+const PdfRotator = lazy(() => import('./pages/PdfRotator.jsx'))
 const QrGenerator = lazy(() => import('./pages/QrGenerator.jsx'))
 const PasswordGenerator = lazy(() => import('./pages/PasswordGenerator.jsx'))
 const JpgToPdf = lazy(() => import('./pages/JpgToPdf.jsx'))
 const PdfToJpg = lazy(() => import('./pages/PdfToJpg.jsx'))
 const PdfCompressor = lazy(() => import('./pages/PdfCompressor.jsx'))
 const WordCounter = lazy(() => import('./pages/WordCounter.jsx'))
+const CharacterCounter = lazy(() => import('./pages/CharacterCounter.jsx'))
+const HeicToJpg = lazy(() => import('./pages/HeicToJpg.jsx'))
+const PngToJpg = lazy(() => import('./pages/PngToJpg.jsx'))
+const JpgToPng = lazy(() => import('./pages/JpgToPng.jsx'))
 const ImageResizer = lazy(() => import('./pages/ImageResizer.jsx'))
+const ImageCropper = lazy(() => import('./pages/ImageCropper.jsx'))
 const AgeCalculator = lazy(() => import('./pages/AgeCalculator.jsx'))
+const PercentageCalculator = lazy(() => import('./pages/PercentageCalculator.jsx'))
+const UnitConverter = lazy(() => import('./pages/UnitConverter.jsx'))
+const TextCaseConverter = lazy(() => import('./pages/TextCaseConverter.jsx'))
+const UrlEncoderDecoder = lazy(() => import('./pages/UrlEncoderDecoder.jsx'))
+const HtmlEncoderDecoder = lazy(() => import('./pages/HtmlEncoderDecoder.jsx'))
+const JsonToCsv = lazy(() => import('./pages/JsonToCsv.jsx'))
+const CsvToJson = lazy(() => import('./pages/CsvToJson.jsx'))
 
 export default function App() {
   return (
@@ -46,10 +60,42 @@ export default function App() {
           />
           <Route path="/json-formatter" element={<JsonFormatter />} />
           <Route
+            path="/json-to-csv"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading JSON to CSV Converter…</p>}>
+                <JsonToCsv />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/csv-to-json"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading CSV to JSON Converter…</p>}>
+                <CsvToJson />
+              </Suspense>
+            }
+          />
+          <Route
             path="/pdf-merger"
             element={
               <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading PDF Merger…</p>}>
                 <PdfMerger />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/pdf-splitter"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading PDF Splitter…</p>}>
+                <PdfSplitter />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/pdf-rotator"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading PDF Rotator…</p>}>
+                <PdfRotator />
               </Suspense>
             }
           />
@@ -102,6 +148,38 @@ export default function App() {
             }
           />
           <Route
+            path="/character-counter"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading Character Counter…</p>}>
+                <CharacterCounter />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/heic-to-jpg"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading HEIC to JPG Converter…</p>}>
+                <HeicToJpg />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/png-to-jpg"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading PNG to JPG Converter…</p>}>
+                <PngToJpg />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/jpg-to-png"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading JPG to PNG Converter…</p>}>
+                <JpgToPng />
+              </Suspense>
+            }
+          />
+          <Route
             path="/image-resizer"
             element={
               <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading Image Resizer…</p>}>
@@ -110,10 +188,58 @@ export default function App() {
             }
           />
           <Route
+            path="/image-cropper"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading Image Cropper…</p>}>
+                <ImageCropper />
+              </Suspense>
+            }
+          />
+          <Route
             path="/age-calculator"
             element={
               <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading Age Calculator…</p>}>
                 <AgeCalculator />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/percentage-calculator"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading Percentage Calculator…</p>}>
+                <PercentageCalculator />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/unit-converter"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading Unit Converter…</p>}>
+                <UnitConverter />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/text-case-converter"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading Text Case Converter…</p>}>
+                <TextCaseConverter />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/url-encoder-decoder"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading URL Encoder &amp; Decoder…</p>}>
+                <UrlEncoderDecoder />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/html-encoder-decoder"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading HTML Encoder &amp; Decoder…</p>}>
+                <HtmlEncoderDecoder />
               </Suspense>
             }
           />
