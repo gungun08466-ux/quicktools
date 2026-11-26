@@ -13,6 +13,8 @@ const ImageCompressor = lazy(() => import('./pages/ImageCompressor.jsx'))
 const PdfMerger = lazy(() => import('./pages/PdfMerger.jsx'))
 const PdfSplitter = lazy(() => import('./pages/PdfSplitter.jsx'))
 const PdfRotator = lazy(() => import('./pages/PdfRotator.jsx'))
+const PdfPageNumberer = lazy(() => import('./pages/PdfPageNumberer.jsx'))
+const PdfWatermark = lazy(() => import('./pages/PdfWatermark.jsx'))
 const QrGenerator = lazy(() => import('./pages/QrGenerator.jsx'))
 const PasswordGenerator = lazy(() => import('./pages/PasswordGenerator.jsx'))
 const JpgToPdf = lazy(() => import('./pages/JpgToPdf.jsx'))
@@ -38,6 +40,7 @@ const XmlFormatter = lazy(() => import('./pages/XmlFormatter.jsx'))
 const MarkdownEditor = lazy(() => import('./pages/MarkdownEditor.jsx'))
 const SqlFormatter = lazy(() => import('./pages/SqlFormatter.jsx'))
 const RegexTester = lazy(() => import('./pages/RegexTester.jsx'))
+const TextDiffChecker = lazy(() => import('./pages/TextDiffChecker.jsx'))
 const ColorPicker = lazy(() => import('./pages/ColorPicker.jsx'))
 
 export default function App() {
@@ -122,6 +125,14 @@ export default function App() {
             }
           />
           <Route
+            path="/text-diff-checker"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading Text Diff Checker…</p>}>
+                <TextDiffChecker />
+              </Suspense>
+            }
+          />
+          <Route
             path="/color-picker"
             element={
               <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading Color Picker &amp; Palette Generator…</p>}>
@@ -150,6 +161,22 @@ export default function App() {
             element={
               <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading PDF Rotator…</p>}>
                 <PdfRotator />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/pdf-page-numberer"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading PDF Page Numberer…</p>}>
+                <PdfPageNumberer />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/pdf-watermark"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading PDF Watermark…</p>}>
+                <PdfWatermark />
               </Suspense>
             }
           />
