@@ -10,6 +10,12 @@
   <url><loc>https://quicktools-one-delta.vercel.app/json-formatter</loc></url>
   <url><loc>https://quicktools-one-delta.vercel.app/json-to-csv</loc></url>
   <url><loc>https://quicktools-one-delta.vercel.app/csv-to-json</loc></url>
+  <url><loc>https://quicktools-one-delta.vercel.app/base64-encoder-decoder</loc></url>
+  <url><loc>https://quicktools-one-delta.vercel.app/xml-formatter</loc></url>
+  <url><loc>https://quicktools-one-delta.vercel.app/markdown-editor</loc></url>
+  <url><loc>https://quicktools-one-delta.vercel.app/sql-formatter</loc></url>
+  <url><loc>https://quicktools-one-delta.vercel.app/regex-tester</loc></url>
+  <url><loc>https://quicktools-one-delta.vercel.app/color-picker</loc></url>
   <url><loc>https://quicktools-one-delta.vercel.app/pdf-merger</loc></url>
   <url><loc>https://quicktools-one-delta.vercel.app/pdf-splitter</loc></url>
   <url><loc>https://quicktools-one-delta.vercel.app/pdf-rotator</loc></url>

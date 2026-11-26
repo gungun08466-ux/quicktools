@@ -33,6 +33,12 @@ const UrlEncoderDecoder = lazy(() => import('./pages/UrlEncoderDecoder.jsx'))
 const HtmlEncoderDecoder = lazy(() => import('./pages/HtmlEncoderDecoder.jsx'))
 const JsonToCsv = lazy(() => import('./pages/JsonToCsv.jsx'))
 const CsvToJson = lazy(() => import('./pages/CsvToJson.jsx'))
+const Base64EncoderDecoder = lazy(() => import('./pages/Base64EncoderDecoder.jsx'))
+const XmlFormatter = lazy(() => import('./pages/XmlFormatter.jsx'))
+const MarkdownEditor = lazy(() => import('./pages/MarkdownEditor.jsx'))
+const SqlFormatter = lazy(() => import('./pages/SqlFormatter.jsx'))
+const RegexTester = lazy(() => import('./pages/RegexTester.jsx'))
+const ColorPicker = lazy(() => import('./pages/ColorPicker.jsx'))
 
 export default function App() {
   return (
@@ -72,6 +78,54 @@ export default function App() {
             element={
               <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading CSV to JSON Converter…</p>}>
                 <CsvToJson />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/base64-encoder-decoder"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading Base64 Encoder &amp; Decoder…</p>}>
+                <Base64EncoderDecoder />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/xml-formatter"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading XML Formatter &amp; Validator…</p>}>
+                <XmlFormatter />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/markdown-editor"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading Markdown Editor &amp; Preview…</p>}>
+                <MarkdownEditor />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/sql-formatter"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading SQL Formatter…</p>}>
+                <SqlFormatter />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/regex-tester"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading Regex Tester…</p>}>
+                <RegexTester />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/color-picker"
+            element={
+              <Suspense fallback={<p className="px-4 py-16 text-center text-slate-600">Loading Color Picker &amp; Palette Generator…</p>}>
+                <ColorPicker />
               </Suspense>
             }
           />

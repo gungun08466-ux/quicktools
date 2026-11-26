@@ -49,6 +49,36 @@ const tools = [
     to: '/csv-to-json',
   },
   {
+    title: 'Base64 Encoder & Decoder',
+    description: 'Encode or decode text, including Unicode, in your browser.',
+    to: '/base64-encoder-decoder',
+  },
+  {
+    title: 'XML Formatter & Validator',
+    description: 'Format, minify, and validate XML in your browser.',
+    to: '/xml-formatter',
+  },
+  {
+    title: 'Markdown Editor & Preview',
+    description: 'Write Markdown and preview it safely in your browser.',
+    to: '/markdown-editor',
+  },
+  {
+    title: 'SQL Formatter',
+    description: 'Format or minify SQL with configurable indentation and keyword case.',
+    to: '/sql-formatter',
+  },
+  {
+    title: 'Regex Tester',
+    description: 'Test JavaScript regular expressions and inspect highlighted matches and capture groups.',
+    to: '/regex-tester',
+  },
+  {
+    title: 'Color Picker & Palette Generator',
+    description: 'Convert HEX, RGB, and HSL values, generate color palettes, and check WCAG contrast.',
+    to: '/color-picker',
+  },
+  {
     title: 'PDF Merger',
     description: 'Combine multiple PDF files into one document.',
     to: '/pdf-merger',
@@ -135,7 +165,7 @@ export default function AboutPage() {
     <>
       <PageMetadata
         title="About"
-        description="QuickTools provides browser-based utilities for image cropping, resizing and compression, HEIC-to-JPG conversion, PDF rotation, splitting, merging and compression, text case conversion and counting, unit and percentage conversions, age calculations, PDF conversion, JSON formatting and CSV conversion, QR codes, and passwords."
+        description="QuickTools provides browser-based utilities for image cropping, resizing and compression, HEIC-to-JPG conversion, PDF rotation, splitting, merging and compression, color picking and palette generation, regular expression testing, SQL formatting, Markdown editing and preview, text case conversion and counting, XML formatting and validation, Base64 encoding and decoding, unit and percentage conversions, age calculations, PDF conversion, JSON formatting and CSV conversion, QR codes, and passwords."
       />
       <article className="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-14">
         <header>
@@ -189,9 +219,9 @@ export default function AboutPage() {
             <h2 className="text-xl font-semibold text-slate-950">Privacy and Ease of Use</h2>
             <p className="mt-2 leading-7 text-slate-600">
               Image cropping, compression and resizing, HEIC-to-JPG conversion, PDF rotation, splitting, compression,
-              merging, and PDF/image conversion process files in your browser. Text case conversion, word counting, JSON
-              formatting, JSON-to-CSV and CSV-to-JSON conversion, URL and HTML encoding and
-              decoding, QR code generation, password generation, percentage and age
+              merging, and PDF/image conversion process files in your browser. Regex testing, SQL formatting, text case conversion, word counting, JSON
+              formatting, Markdown editing and preview, XML formatting and validation, JSON-to-CSV and CSV-to-JSON conversion, URL, HTML, and Base64 encoding and
+              decoding, QR code generation, password generation, color picking and WCAG contrast checks, percentage and age
               calculations and unit conversions also run in the browser. Character counting and word counting
               work locally as you type. Generated passwords
               are not stored by the tool. The website itself is delivered over
